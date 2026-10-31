@@ -1,0 +1,11 @@
+{
+  "name": "sahajsetu-ecosystem",
+  "version": "1.0.0",
+  "description": "Website for SahajSetu, Local Shop AI, FarmLink Marketplace, and FoodShare Network",
+  "scripts": {
+    "start": "serve ."
+  },
+  "keywords": ["sahajsetu", "agritech", "retail-ai", "food-rescue"],
+  "author": "SAHAJSETU",
+  "license": "MIT"
+}

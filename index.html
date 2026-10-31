@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAHAJSETU — Empowering Grassroots Commerce, Agriculture & Food Security</title>
+  <meta name="description" content="SahajSetu is the unified grassroots ecosystem powering Local Shop AI, FarmLink Marketplace, and FoodShare Network.">
+
+  <!-- Tailwind CSS CDN with Plugins -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              500: '#16a34a',
+              600: '#15803d',
+              700: '#166534',
+              800: '#14532d',
+              900: '#052e16'
+            },
+            saffron: {
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c'
+            },
+            tealAccent: {
+              500: '#0d9488',
+              600: '#0f766e'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .headline-font {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .glassmorphism {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .glassmorphism-dark {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #15803d 0%, #0d9488 50%, #ea580c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .blob-bg {
+      position: absolute;
+      filter: blur(80px);
+      z-index: 0;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- BACKGROUND DECORATIONS -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="blob-bg w-96 h-96 rounded-full bg-emerald-400 -top-20 -left-20"></div>
+    <div class="blob-bg w-[32rem] h-[32rem] rounded-full bg-amber-300 top-1/3 -right-32"></div>
+    <div class="blob-bg w-80 h-80 rounded-full bg-teal-400 bottom-10 left-1/4"></div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <header class="sticky top-0 z-50 glassmorphism border-b border-slate-200/80 transition-all duration-300 shadow-sm" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-600 via-emerald-500 to-amber-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform duration-200">
+          <i data-lucide="network" class="w-6 h-6 stroke-[2.2]"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-2xl font-extrabold tracking-tight headline-font text-slate-900 flex items-center">
+            SAHAJ<span class="text-brand-600">SETU</span>
+          </span>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 -mt-1">Grassroots Ecosystem</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+        <a href="#about" class="hover:text-brand-600 transition-colors">Vision</a>
+        
+        <!-- Dropdown for Products -->
+        <div class="relative group">
+          <button class="flex items-center space-x-1 hover:text-brand-600 transition-colors py-2">
+            <span>Our Products</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+          </button>
+          <div class="absolute left-0 mt-1 w-64 rounded-2xl bg-white shadow-xl border border-slate-100 p-2 hidden group-hover:block transition-all opacity-0 group-hover:opacity-100 transform -translate-y-2 group-hover:translate-y-0">
+            <a href="#local-shop-ai" class="flex items-start space-x-3 p-3 rounded-xl hover:bg-slate-50 transition">
+              <div class="p-2 rounded-lg bg-indigo-50 text-indigo-600 mt-0.5">
+                <i data-lucide="store" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="font-bold text-slate-900 text-sm">Local Shop AI</p>
+                <p class="text-xs text-slate-500">Next-gen smart kirana AI</p>
+              </div>
+            </a>
+            <a href="#farmlink" class="flex items-start space-x-3 p-3 rounded-xl hover:bg-slate-50 transition">
+              <div class="p-2 rounded-lg bg-emerald-50 text-emerald-600 mt-0.5">
+                <i data-lucide="sprout" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="font-bold text-slate-900 text-sm">FarmLink</p>
+                <p class="text-xs text-slate-500">Direct farm-to-business market</p>
+              </div>
+            </a>
+            <a href="#foodshare" class="flex items-start space-x-3 p-3 rounded-xl hover:bg-slate-50 transition">
+              <div class="p-2 rounded-lg bg-amber-50 text-amber-600 mt-0.5">
+                <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="font-bold text-slate-900 text-sm">FoodShare Network</p>
+                <p class="text-xs text-slate-500">Zero-waste community relief</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="#impact" class="hover:text-brand-600 transition-colors">Impact & Tech</a>
+        <a href="#simulator" class="hover:text-brand-600 transition-colors">Interactive Demo</a>
+        <button onclick="openInvestorDeck()" class="text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition-colors flex items-center space-x-1 font-bold">
+          <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+          <span>Investor Deck</span>
+        </button>
+        <a href="#contact" class="hover:text-brand-600 transition-colors">Join Pilot</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="hidden sm:flex items-center space-x-3">
+        <button onclick="openModal('pilot')" class="px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 shadow-md shadow-slate-900/10 hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center space-x-2">
+          <span>Partner With Us</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="md:hidden p-2 text-slate-700" onclick="toggleMobileMenu()">
+        <i data-lucide="menu" id="mobile-menu-icon" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-5 space-y-4 shadow-xl">
+      <a href="#about" onclick="toggleMobileMenu()" class="block font-medium text-slate-700 hover:text-brand-600">Vision & Mission</a>
+      <div class="pl-2 border-l-2 border-brand-500 space-y-3 my-2">
+        <a href="#local-shop-ai" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-slate-800">1. Local Shop AI</a>
+        <a href="#farmlink" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-slate-800">2. FarmLink Marketplace</a>
+        <a href="#foodshare" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-slate-800">3. FoodShare Network</a>
+      </div>
+      <a href="#impact" onclick="toggleMobileMenu()" class="block font-medium text-slate-700 hover:text-brand-600">Unified Ecosystem Impact</a>
+      <a href="#simulator" onclick="toggleMobileMenu()" class="block font-medium text-slate-700 hover:text-brand-600">Interactive Simulator</a>
+      <button onclick="toggleMobileMenu(); openModal('pilot');" class="w-full text-center py-3 bg-brand-600 text-white font-bold rounded-xl shadow-lg">Join Pilot Program</button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Pill Tag -->
+      <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-emerald-100/80 text-emerald-800 text-xs sm:text-sm font-semibold mb-6 border border-emerald-300/60 shadow-sm">
+        <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>SahajSetu Ecosystem • One Unified Vision</span>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 space-y-6 text-left">
+          <h1 class="headline-font text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.08]">
+            Bridging <span class="gradient-text">Farms, Neighborhood Stores</span> & Communities.
+          </h1>
+          <p class="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl font-normal">
+            <strong>SAHAJSETU</strong> builds the digital backbone for grassroots empowerment. By unifying micro-retail artificial intelligence, equitable agri-trade, and real-time surplus food redistribution, we turn local resilience into scalable prosperity.
+          </p>
+
+          <!-- Metrics Quick Bar -->
+          <div class="pt-2 flex flex-wrap gap-4 sm:gap-6 text-sm font-semibold text-slate-700">
+            <div class="flex items-center space-x-2 bg-white/70 border border-slate-200/80 px-4 py-2.5 rounded-xl shadow-sm">
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600"></i>
+              <span>Zero Middlemen Markups</span>
+            </div>
+            <div class="flex items-center space-x-2 bg-white/70 border border-slate-200/80 px-4 py-2.5 rounded-xl shadow-sm">
+              <i data-lucide="mic" class="w-5 h-5 text-indigo-600"></i>
+              <span>Vernacular Voice AI</span>
+            </div>
+            <div class="flex items-center space-x-2 bg-white/70 border border-slate-200/80 px-4 py-2.5 rounded-xl shadow-sm">
+              <i data-lucide="leaf" class="w-5 h-5 text-amber-600"></i>
+              <span>Zero-Food-Waste Pipeline</span>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="pt-4 flex flex-col sm:flex-row gap-4">
+            <a href="#products-showcase" class="inline-flex justify-center items-center px-7 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-base shadow-lg shadow-brand-600/30 transition-all duration-200 hover:-translate-y-0.5">
+              <span>Explore The 3 Pillars</span>
+              <i data-lucide="chevron-right" class="w-5 h-5 ml-2"></i>
+            </a>
+            <a href="#simulator" class="inline-flex justify-center items-center px-7 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-base border border-slate-200/90 shadow-sm transition-all duration-200">
+              <i data-lucide="play-circle" class="w-5 h-5 mr-2 text-brand-600"></i>
+              <span>Try Live Simulator</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Visual: Ecosystem Triad Diagram -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <!-- Central SahajSetu Core Card -->
+            <div class="relative z-20 bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100 space-y-6">
+              <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold">SS</div>
+                  <div>
+                    <h3 class="font-bold text-slate-900 leading-none">SahajSetu Engine</h3>
+                    <p class="text-xs text-slate-500 mt-1">Interconnected Grassroots Grid</p>
+                  </div>
+                </div>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live Node
+                </span>
+              </div>
+
+              <!-- Product 1 Badge -->
+              <div class="group p-3.5 rounded-2xl bg-indigo-50/70 border border-indigo-100 flex items-center justify-between hover:bg-indigo-50 transition cursor-pointer" onclick="scrollToId('local-shop-ai')">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow">
+                    <i data-lucide="store" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-900 text-sm">Product 1: Local Shop AI</h4>
+                    <p class="text-xs text-slate-600">Smart Voice Billing & Kirana ERP</p>
+                  </div>
+                </div>
+                <i data-lucide="arrow-up-right" class="w-4 h-4 text-indigo-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+              </div>
+
+              <!-- Product 2 Badge -->
+              <div class="group p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-100 flex items-center justify-between hover:bg-emerald-50 transition cursor-pointer" onclick="scrollToId('farmlink')">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shadow">
+                    <i data-lucide="sprout" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-900 text-sm">Product 2: FarmLink Marketplace</h4>
+                    <p class="text-xs text-slate-600">Direct Farm-to-Retail Trade</p>
+                  </div>
+                </div>
+                <i data-lucide="arrow-up-right" class="w-4 h-4 text-emerald-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+              </div>
+
+              <!-- Product 3 Badge -->
+              <div class="group p-3.5 rounded-2xl bg-amber-50/70 border border-amber-100 flex items-center justify-between hover:bg-amber-50 transition cursor-pointer" onclick="scrollToId('foodshare')">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center shadow">
+                    <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-900 text-sm">Product 3: FoodShare Network</h4>
+                    <p class="text-xs text-slate-600">Surplus Food Redistribution & NGOs</p>
+                  </div>
+                </div>
+                <i data-lucide="arrow-up-right" class="w-4 h-4 text-amber-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+              </div>
+
+              <!-- Flow Indicator -->
+              <div class="bg-slate-50 rounded-xl p-3 text-center border border-dashed border-slate-200">
+                <p class="text-xs font-semibold text-slate-500">
+                  <i data-lucide="repeat" class="w-3.5 h-3.5 inline mr-1 text-brand-600"></i>
+                  Data & logistics circulate seamlessly across all three nodes
+                </p>
+              </div>
+            </div>
+
+            <!-- Decorative floating cards -->
+            <div class="absolute -bottom-6 -left-6 bg-white p-3.5 rounded-2xl shadow-xl border border-slate-100 flex items-center space-x-3 z-30 animate-bounce duration-1000">
+              <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs">
+                +42%
+              </div>
+              <div class="text-xs">
+                <p class="font-bold text-slate-900">Farmer Profit Growth</p>
+                <p class="text-slate-400">Via Direct FarmLink Sales</p>
+              </div>
+            </div>
+
+            <div class="absolute -top-6 -right-6 bg-white p-3.5 rounded-2xl shadow-xl border border-slate-100 flex items-center space-x-3 z-30">
+              <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs">
+                <i data-lucide="utensils" class="w-4 h-4"></i>
+              </div>
+              <div class="text-xs">
+                <p class="font-bold text-slate-900">18,500+ Meals</p>
+                <p class="text-slate-400">Saved this month</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PARENT BRAND VISION & PHILOSOPHY -->
+  <section id="about" class="py-20 bg-white border-y border-slate-200/80 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs uppercase tracking-widest font-extrabold text-brand-600 mb-2">The SahajSetu Philosophy</h2>
+        <p class="headline-font text-3xl sm:text-5xl font-extrabold text-slate-900">
+          "Sahaj" means effortless.<br>"Setu" means bridge.
+        </p>
+        <p class="mt-4 text-slate-600 text-base sm:text-lg">
+          India and emerging markets operate on relationships, informal credit, and local trust. SahajSetu doesn't disrupt this cultural fabric—it supercharges it with intuitive, AI-native infrastructure that anyone can use without formal tech training.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Pillar 1 Card -->
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-indigo-200 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center mb-6">
+            <i data-lucide="cpu" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Hyper-Accessible Intelligence</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Eliminating computer literacy barriers with dialect-aware voice assistants, WhatsApp integrations, and camera-based receipt scanning tailored for micro-merchants.
+          </p>
+        </div>
+
+        <!-- Pillar 2 Card -->
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-emerald-200 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-6">
+            <i data-lucide="scale" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Fair Value Distribution</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Removing predatory middlemen. Farmers get transparent live mandi prices and direct buyer commitments, while neighborhood shops access fresh produce at wholesale parity.
+          </p>
+        </div>
+
+        <!-- Pillar 3 Card -->
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-6">
+            <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Circular Community Safety Net</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            No good food should go to landfills while neighbors sleep hungry. Surplus food from shops and restaurants is routed instantly to local shelters through smart dispatch.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DETAILED PRODUCT 1: LOCAL SHOP AI -->
+  <section id="local-shop-ai" class="py-24 bg-gradient-to-b from-white to-slate-50 relative z-10 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Text details -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>Product 01 • Micro-Retail Tech</span>
+          </div>
+
+          <h2 class="headline-font text-3xl sm:text-5xl font-extrabold text-slate-900">
+            Local Shop AI: Turning Kiranas Into AI-Powered Powerhouses
+          </h2>
+
+          <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+            Over 13 million local mom-and-pop stores form the heartbeat of commerce. <strong>Local Shop AI</strong> equips every shopkeeper with an ambient co-pilot that manages inventory, generates multilingual GST voice bills in seconds, and automates customer credit tracking (Khata).
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="flex items-start space-x-3">
+              <div class="p-2 rounded-lg bg-indigo-50 text-indigo-600 mt-1">
+                <i data-lucide="mic-vocal" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900">Voice-Powered Instant Billing</h4>
+                <p class="text-sm text-slate-600">Speak naturally in Hindi, Tamil, Bengali, or English ("2 kg Aashirvaad Atta, 1 Dettol soap") and produce print/WhatsApp bills in 3 seconds.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3">
+              <div class="p-2 rounded-lg bg-indigo-50 text-indigo-600 mt-1">
+                <i data-lucide="trending-up" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900">Predictive Stock Replenishment</h4>
+                <p class="text-sm text-slate-600">AI monitors consumption cycles and local festival calendars, alerting the shopkeeper before critical inventory runs dry.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3">
+              <div class="p-2 rounded-lg bg-indigo-50 text-indigo-600 mt-1">
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900">Automated WhatsApp Ordering for Customers</h4>
+                <p class="text-sm text-slate-600">Shoppers send grocery lists on WhatsApp; Local Shop AI parses photos or audio notes into confirmed pickup baskets.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 flex items-center space-x-4">
+            <button onclick="openModal('local-shop-ai')" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition">
+              Deploy Local Shop AI
+            </button>
+            <a href="#simulator" class="text-sm font-bold text-indigo-600 hover:text-indigo-800 flex items-center">
+              Watch voice demo <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Mockup for Local Shop AI -->
+        <div class="lg:col-span-6">
+          <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-800">
+            <!-- Mockup header -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800 text-xs">
+              <div class="flex items-center space-x-2">
+                <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                <span class="ml-2 font-mono text-slate-400">LocalShopAI — POS Terminal v2.4</span>
+              </div>
+              <span class="text-emerald-400 font-mono flex items-center gap-1">
+                <i data-lucide="wifi" class="w-3 h-3"></i> Sync OK
+              </span>
+            </div>
+
+            <!-- Voice Input Simulation UI -->
+            <div class="mt-6 space-y-4">
+              <div class="bg-slate-800/80 rounded-2xl p-4 border border-slate-700">
+                <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+                  <span class="flex items-center gap-1.5 text-indigo-400 font-semibold">
+                    <i data-lucide="mic" class="w-4 h-4 animate-pulse"></i> Voice Recognition Active
+                  </span>
+                  <span>Dialect: Hindi / Hinglish</span>
+                </div>
+                <div class="bg-slate-950 p-3 rounded-xl font-mono text-xs sm:text-sm text-indigo-200 border border-slate-800 flex items-center justify-between">
+                  <span>"Ramesh Bhai: 2 packet doodh, aadha kilo cheeni, 1 surf excel"</span>
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+                </div>
+              </div>
+
+              <!-- Cart Summary -->
+              <div class="bg-slate-800/40 rounded-2xl p-4 border border-slate-800 space-y-3">
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-400 flex justify-between">
+                  <span>Real-time Bill Itemization</span>
+                  <span>Price</span>
+                </div>
+
+                <div class="space-y-2 text-xs sm:text-sm font-mono">
+                  <div class="flex justify-between text-slate-300">
+                    <span>1. Fresh Milk Pouch (500ml x 2)</span>
+                    <span class="font-bold text-white">₹66.00</span>
+                  </div>
+                  <div class="flex justify-between text-slate-300">
+                    <span>2. Refined Sugar (0.50 kg)</span>
+                    <span class="font-bold text-white">₹24.00</span>
+                  </div>
+                  <div class="flex justify-between text-slate-300">
+                    <span>3. Detergent Bar 200g</span>
+                    <span class="font-bold text-white">₹40.00</span>
+                  </div>
+                </div>
+
+                <div class="pt-3 border-t border-slate-700 flex justify-between items-center">
+                  <div>
+                    <span class="text-xs text-slate-400">Total Due (incl. GST)</span>
+                    <p class="text-xl font-bold text-emerald-400 font-mono">₹130.00</p>
+                  </div>
+                  <div class="flex space-x-2">
+                    <button class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold flex items-center gap-1">
+                      <i data-lucide="printer" class="w-3.5 h-3.5"></i> Print
+                    </button>
+                    <button class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold flex items-center gap-1">
+                      <i data-lucide="send" class="w-3.5 h-3.5"></i> WhatsApp
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Smart Insight Box -->
+              <div class="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center space-x-3 text-xs text-amber-300">
+                <i data-lucide="alert-triangle" class="w-4 h-4 flex-shrink-0 text-amber-400"></i>
+                <span><strong>AI Alert:</strong> Refined Sugar inventory low (3 units left). FarmLink direct supplier available with 18% lower bulk price.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DETAILED PRODUCT 2: FARMLINK MARKETPLACE -->
+  <section id="farmlink" class="py-24 bg-white relative z-10 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Farmlink Graphic / Marketplace Board -->
+        <div class="lg:col-span-6 order-2 lg:order-1">
+          <div class="bg-gradient-to-br from-emerald-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-emerald-800">
+            <div class="flex items-center justify-between pb-4 border-b border-emerald-800/80">
+              <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold">
+                  <i data-lucide="tractor" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-white text-sm">FarmLink Live Exchange</h3>
+                  <p class="text-xs text-emerald-300">Nashik & Punjab Agri Hubs</p>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-semibold">
+                Verified Origin
+              </span>
+            </div>
+
+            <!-- Live Listings -->
+            <div class="mt-6 space-y-3">
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Nashik Cluster • FPO #108</span>
+                    <h4 class="font-bold text-white text-base">Red Onions (Grade A Export Quality)</h4>
+                    <p class="text-xs text-slate-300 mt-0.5">Available: 4.5 Metric Tons • Harvested yesterday</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-lg font-bold text-emerald-400">₹22.50 <span class="text-xs text-slate-400">/ kg</span></p>
+                    <span class="text-[10px] text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/30">Mandi Price: ₹29</span>
+                  </div>
+                </div>
+                <div class="mt-3 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+                  <span class="text-slate-400"><i data-lucide="shield-check" class="w-3.5 h-3.5 inline text-emerald-400"></i> Quality Certified</span>
+                  <button class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-semibold text-xs">
+                    Lock Batch Order
+                  </button>
+                </div>
+              </div>
+
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Himachal Organic Co-op</span>
+                    <h4 class="font-bold text-white text-base">Royal Delicious Apples</h4>
+                    <p class="text-xs text-slate-300 mt-0.5">Available: 850 Crates • Cold-storage dispatched</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-lg font-bold text-emerald-400">₹78.00 <span class="text-xs text-slate-400">/ kg</span></p>
+                    <span class="text-[10px] text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">Zero Middleman</span>
+                  </div>
+                </div>
+                <div class="mt-3 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
+                  <span class="text-slate-400"><i data-lucide="truck" class="w-3.5 h-3.5 inline text-emerald-400"></i> Same-Day Dispatch</span>
+                  <button class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-semibold text-xs">
+                    Lock Batch Order
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 p-3 rounded-xl bg-emerald-950/70 border border-emerald-600/30 flex items-center justify-between text-xs">
+              <span class="text-emerald-200">Payment Escrow: Protected till quality check at store gate.</span>
+              <i data-lucide="lock" class="w-4 h-4 text-emerald-400"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Farmlink details -->
+        <div class="lg:col-span-6 space-y-6 order-1 lg:order-2">
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="trees" class="w-3.5 h-3.5"></i>
+            <span>Product 02 • Agri-Supply Disintermediation</span>
+          </div>
+
+          <h2 class="headline-font text-3xl sm:text-5xl font-extrabold text-slate-900">
+            FarmLink Marketplace: Connecting Growers Directly to Retailers
+          </h2>
+
+          <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+            Traditional produce journeys pass through 4 to 7 intermediaries, causing massive post-harvest loss and draining farmer profitability. <strong>FarmLink Marketplace</strong> creates a direct digital highway connecting Farmer Producer Organizations (FPOs) and smallholders directly with kirana stores, restaurants, and institutional kitchens.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+              <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                <i data-lucide="coins" class="w-4 h-4"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">30-40% Better Realization</h4>
+              <p class="text-xs text-slate-600">Growers retain maximum share of consumer rupees without unrecorded commission deductions.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+              <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                <i data-lucide="clock-4" class="w-4 h-4"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">18-Hour Harvest-to-Shelf</h4>
+              <p class="text-xs text-slate-600">Aggregated cold logistics reduce transit decay from 28% down to under 3%.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+              <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                <i data-lucide="file-check" class="w-4 h-4"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Smart Quality Grading</h4>
+              <p class="text-xs text-slate-600">Computer vision grading at village aggregation points assigns objective quality tiers.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+              <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                <i data-lucide="shield" class="w-4 h-4"></i>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Instant Escrow Payouts</h4>
+              <p class="text-xs text-slate-600">Direct UPI bank transfers upon digital gate receipt, eliminating months-long credit delays.</p>
+            </div>
+          </div>
+
+          <div class="pt-4 flex items-center space-x-4">
+            <button onclick="openModal('farmlink')" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition">
+              Onboard Your Farm or FPO
+            </button>
+            <button onclick="openModal('buyer')" class="px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm transition">
+              Source Wholesale Produce
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DETAILED PRODUCT 3: FOODSHARE NETWORK -->
+  <section id="foodshare" class="py-24 bg-gradient-to-b from-slate-50 to-white relative z-10 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Text Details -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+            <span>Product 03 • Zero-Waste Social Mission</span>
+          </div>
+
+          <h2 class="headline-font text-3xl sm:text-5xl font-extrabold text-slate-900">
+            FoodShare Network: Solving Hunger Through Zero Food Waste
+          </h2>
+
+          <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+            While millions face nutrition insecurity, tons of fresh perishables and prepared food get discarded daily due to demand mismatches. <strong>FoodShare Network</strong> is our civic logistics platform connecting retail shops, catering hubs, and corporate cafeterias with verified food banks and shelters.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="flex items-start space-x-3">
+              <div class="p-2 rounded-lg bg-amber-50 text-amber-600 mt-1">
+                <i data-lucide="bell-ring" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900">1-Tap Surplus Dispatch</h4>
+                <p class="text-sm text-slate-600">Whenever a local store or restaurant has surplus edible stock or safe prepared meals, a single button flags nearby NGO volunteers.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3">
+              <div class="p-2 rounded-lg bg-amber-50 text-amber-600 mt-1">
+                <i data-lucide="thermometer-snowflake" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900">Food Safety & Shelf-Life Protocol</h4>
+                <p class="text-sm text-slate-600">Strict safety checklists, temperature monitoring guidelines, and digital liability waivers ensure food reaches recipients hygienically.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3">
+              <div class="p-2 rounded-lg bg-amber-50 text-amber-600 mt-1">
+                <i data-lucide="award" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900">Tax & ESG Impact Credits</h4>
+                <p class="text-sm text-slate-600">Donating businesses receive automated ESG carbon-offset documentation and Section 80G tax benefit ledgers.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 flex items-center space-x-4">
+            <button onclick="openModal('foodshare')" class="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-md transition">
+              Register NGO or Kitchen
+            </button>
+            <a href="#simulator" class="text-sm font-bold text-amber-600 hover:text-amber-800 flex items-center">
+              Simulate dispatch pipeline <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- FoodShare Live Volunteer Dispatch Mockup -->
+        <div class="lg:col-span-6">
+          <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 space-y-6">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold">
+                  <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-900 text-sm">FoodShare Rescue Hub</h3>
+                  <p class="text-xs text-slate-500">Live Civic Grid • Sector 4 Urban Area</p>
+                </div>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping"></span> 3 Dispatches Active
+              </span>
+            </div>
+
+            <!-- Active Dispatch card -->
+            <div class="bg-amber-50/60 rounded-2xl p-4 border border-amber-200/80 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-800 flex items-center gap-1">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Pickup in 25 mins
+                </span>
+                <span class="text-xs font-mono bg-white px-2 py-0.5 rounded text-amber-700 font-semibold border border-amber-200">Surplus ID #8921</span>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Grand Celebration Hall & Bakery</h4>
+                <p class="text-xs text-slate-600">Surplus: 140 Portions of Fresh Packed Meals (Vegetarian)</p>
+              </div>
+
+              <div class="flex items-center justify-between pt-2 border-t border-amber-200/60 text-xs">
+                <div class="flex items-center space-x-2">
+                  <div class="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px] font-bold">AK</div>
+                  <span class="text-slate-700 font-medium">Assigned: Ananya K. (Volunteer Rider)</span>
+                </div>
+                <span class="font-bold text-emerald-600">En Route</span>
+              </div>
+            </div>
+
+            <!-- Destination Shelter Card -->
+            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 space-y-2">
+              <div class="flex justify-between items-center text-xs">
+                <span class="text-slate-500 font-semibold">Drop-off Destination</span>
+                <span class="text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded font-bold">Capacity Ready</span>
+              </div>
+              <h5 class="font-bold text-slate-900 text-sm">Aashray Community Orphanage & Shelter</h5>
+              <p class="text-xs text-slate-600">Expected Arrival: 9:15 PM • Certified Safe Distribution</p>
+            </div>
+
+            <!-- Impact Gauge -->
+            <div class="grid grid-cols-3 gap-2 text-center pt-2">
+              <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                <p class="text-base font-extrabold text-slate-900">4,280 kg</p>
+                <p class="text-[10px] text-slate-500 uppercase font-semibold">Food Rescued</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                <p class="text-base font-extrabold text-brand-600">11,200+</p>
+                <p class="text-[10px] text-slate-500 uppercase font-semibold">People Fed</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                <p class="text-base font-extrabold text-amber-600">6.8 Tons</p>
+                <p class="text-[10px] text-slate-500 uppercase font-semibold">CO₂ Offset</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE SIMULATOR SECTION -->
+  <section id="simulator" class="py-20 bg-slate-900 text-white relative z-10 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-emerald-400">Interactive Experience</span>
+        <h2 class="headline-font text-3xl sm:text-5xl font-extrabold text-white mt-2">
+          Test the SahajSetu Live Flow
+        </h2>
+        <p class="text-slate-400 mt-3 text-base">
+          Experience how our 3 products pass data and value dynamically across the ecosystem.
+        </p>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="flex justify-center mb-8">
+        <div class="bg-slate-800 p-1.5 rounded-2xl flex flex-wrap gap-1 max-w-xl border border-slate-700">
+          <button onclick="switchSimTab('tab-local')" id="btn-tab-local" class="sim-tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-indigo-600 text-white transition">
+            1. Local Shop Voice AI
+          </button>
+          <button onclick="switchSimTab('tab-farmlink')" id="btn-tab-farmlink" class="sim-tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white transition">
+            2. FarmLink Price Match
+          </button>
+          <button onclick="switchSimTab('tab-foodshare')" id="btn-tab-foodshare" class="sim-tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white transition">
+            3. FoodShare Dispatch
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive Tab Contents -->
+      <div class="max-w-4xl mx-auto bg-slate-800/90 rounded-3xl p-6 sm:p-10 border border-slate-700 shadow-2xl">
+        
+        <!-- Tab 1: Local Shop AI Simulator -->
+        <div id="tab-local" class="sim-content space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-700 pb-4">
+            <div>
+              <h3 class="text-lg font-bold text-indigo-400">Simulate Voice Order Parsing</h3>
+              <p class="text-xs text-slate-400">Select or speak a vernacular sample phrase to test instant bill extraction.</p>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-indigo-950 text-indigo-300 border border-indigo-700 text-xs font-mono">NLP Engine Online</span>
+          </div>
+
+          <!-- Live Microphone & Preset Buttons -->
+          <div class="flex flex-col sm:flex-row items-center gap-3 p-3 bg-slate-900 rounded-2xl border border-indigo-900/60">
+            <button id="btn-mic-toggle" onclick="toggleLiveMic()" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-red-600 to-indigo-600 hover:from-red-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center space-x-2 shadow-lg transition-all">
+              <i data-lucide="mic" id="mic-icon" class="w-4 h-4"></i>
+              <span id="mic-label">Speak via Microphone (Live)</span>
+            </button>
+            <div id="mic-status-text" class="text-xs text-slate-400 flex items-center gap-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-slate-500" id="mic-indicator"></span>
+              <span id="mic-transcript">Or click a vernacular preset below:</span>
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-3 gap-3">
+            <button onclick="runVoiceSim('hindi')" class="p-3 bg-slate-700/60 hover:bg-slate-700 text-left rounded-xl border border-slate-600 text-xs transition">
+              <span class="font-bold text-white block mb-1">Hindi Sample</span>
+              <span class="text-slate-300 italic">"Pappu: 1 litre Mustard Oil, 2 Dahi, aadha kilo Besan"</span>
+            </button>
+            <button onclick="runVoiceSim('bengali')" class="p-3 bg-slate-700/60 hover:bg-slate-700 text-left rounded-xl border border-slate-600 text-xs transition">
+              <span class="font-bold text-white block mb-1">Bengali / Hinglish</span>
+              <span class="text-slate-300 italic">"Dada: ek packet chaapata, 500g cheeni, 2 biskut"</span>
+            </button>
+            <button onclick="runVoiceSim('marathi')" class="p-3 bg-slate-700/60 hover:bg-slate-700 text-left rounded-xl border border-slate-600 text-xs transition">
+              <span class="font-bold text-white block mb-1">Marathi Mix</span>
+              <span class="text-slate-300 italic">"Bhau: 1 kg Kolam tandool, 2 sabudana packet"</span>
+            </button>
+          </div>
+
+          <!-- Generated output area -->
+          <div id="sim-voice-result" class="bg-slate-950 rounded-2xl p-5 border border-slate-800 font-mono text-xs sm:text-sm space-y-2">
+            <div class="text-slate-400 flex items-center justify-between pb-2 border-b border-slate-800">
+              <span class="text-indigo-400 font-bold"><i data-lucide="cpu" class="w-4 h-4 inline mr-1"></i> Parsed Bill Output</span>
+              <span id="voice-timer" class="text-emerald-400 text-xs">Response time: 0.28s</span>
+            </div>
+            <div id="voice-items-container" class="space-y-1.5 pt-1 text-slate-300">
+              <div class="flex justify-between"><span>• 1 L Mustard Oil (Kachi Ghani)</span> <span class="text-white">₹145.00</span></div>
+              <div class="flex justify-between"><span>• Curd Pouch 400g (x2)</span> <span class="text-white">₹64.00</span></div>
+              <div class="flex justify-between"><span>• Gram Flour (Besan) 500g</span> <span class="text-white">₹48.00</span></div>
+            </div>
+            <div class="pt-3 border-t border-slate-800 flex justify-between font-bold text-base text-white">
+              <span>Grand Total</span>
+              <span id="voice-total" class="text-emerald-400">₹257.00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: FarmLink Simulator -->
+        <div id="tab-farmlink" class="sim-content hidden space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-700 pb-4">
+            <div>
+              <h3 class="text-lg font-bold text-emerald-400">FarmLink Wholesale Price Calculator</h3>
+              <p class="text-xs text-slate-400">Compare conventional APMC mandi supply vs. SahajSetu direct farm link.</p>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-300 border border-emerald-700 text-xs font-mono">Live APMC Index</span>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-6 items-center">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1">Select Crop / Commodity</label>
+                <select id="crop-select" onchange="calcFarmSavings()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+                  <option value="onion">Maharashtra Red Onions (Grade A)</option>
+                  <option value="potato">Punjab Jyoti Potatoes</option>
+                  <option value="tomato">Kolar Hybrid Tomatoes</option>
+                  <option value="wheat">Madhya Pradesh Sharbati Wheat</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1">Monthly Procurement Volume (Kilograms)</label>
+                <input type="range" id="procure-volume" min="200" max="5000" step="100" value="1200" oninput="calcFarmSavings()" class="w-full accent-emerald-500">
+                <div class="flex justify-between text-xs text-slate-400 mt-1">
+                  <span>200 kg</span>
+                  <span id="volume-label" class="text-white font-bold text-sm">1,200 kg / mo</span>
+                  <span>5,000 kg</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comparison Metric card -->
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
+              <div class="flex justify-between text-xs text-slate-400">
+                <span>Middleman Intermediated Cost:</span>
+                <span id="cost-traditional" class="line-through text-red-400 font-mono">₹38,400</span>
+              </div>
+              <div class="flex justify-between text-sm font-bold text-white">
+                <span>FarmLink Direct Cost:</span>
+                <span id="cost-farmlink" class="text-emerald-400 font-mono text-lg">₹27,600</span>
+              </div>
+              <div class="p-3 bg-emerald-950/60 rounded-xl border border-emerald-600/40 text-xs">
+                <span class="text-emerald-300 font-bold block mb-1">Total Monthly Retailer Profit Increase:</span>
+                <span id="savings-amount" class="text-xl font-extrabold text-emerald-400">₹10,800 saved</span>
+                <p class="text-[11px] text-emerald-200/80 mt-1">Farmer receives ₹4.50/kg higher net margin simultaneously.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: FoodShare Simulator -->
+        <div id="tab-foodshare" class="sim-content hidden space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-700 pb-4">
+            <div>
+              <h3 class="text-lg font-bold text-amber-400">Simulate Zero-Waste Food Rescue</h3>
+              <p class="text-xs text-slate-400">Trigger an emergency surplus rescue dispatch to observe local NGO matching.</p>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-amber-950 text-amber-300 border border-amber-700 text-xs font-mono">Civic Match Engine</span>
+          </div>
+
+          <div class="grid sm:grid-cols-3 gap-4">
+            <button onclick="triggerFoodRescue(50, 'Bakery Surplus Croissants & Breads')" class="p-4 bg-slate-700/60 hover:bg-slate-700 rounded-2xl border border-slate-600 text-left transition space-y-1">
+              <i data-lucide="cake" class="w-5 h-5 text-amber-400 mb-1"></i>
+              <p class="font-bold text-white text-xs">Neighborhood Bakery</p>
+              <p class="text-[11px] text-slate-300">50 Portions of bread/muffins</p>
+            </button>
+
+            <button onclick="triggerFoodRescue(180, 'Banquet Dinner Curry & Rice (Hot Pots)')" class="p-4 bg-slate-700/60 hover:bg-slate-700 rounded-2xl border border-slate-600 text-left transition space-y-1">
+              <i data-lucide="chef-hat" class="w-5 h-5 text-amber-400 mb-1"></i>
+              <p class="font-bold text-white text-xs">Wedding Banquet</p>
+              <p class="text-[11px] text-slate-300">180 Hot nutritious meals</p>
+            </button>
+
+            <button onclick="triggerFoodRescue(75, 'Fresh Veggies & Fruits (Cosmetic Blemishes)')" class="p-4 bg-slate-700/60 hover:bg-slate-700 rounded-2xl border border-slate-600 text-left transition space-y-1">
+              <i data-lucide="apple" class="w-5 h-5 text-amber-400 mb-1"></i>
+              <p class="font-bold text-white text-xs">Kirana Produce Surplus</p>
+              <p class="text-[11px] text-slate-300">75 kg edible fresh produce</p>
+            </button>
+          </div>
+
+          <div id="rescue-status-box" class="p-5 bg-slate-950 rounded-2xl border border-slate-800 space-y-3">
+            <div class="flex items-center space-x-2 text-xs text-amber-400 font-bold">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+              <span id="rescue-title">Dispatched: Wedding Banquet (180 Hot Meals)</span>
+            </div>
+            <div class="text-xs text-slate-300 space-y-1">
+              <p>📍 Matched Shelter: <strong>Sneha Sandhya Old Age Home & Night Refuge</strong> (3.2 km away)</p>
+              <p>🚴 Courier Status: <strong>Volunteer Rahul S. confirmed pickup within 12 mins</strong></p>
+              <p>🌱 Environmental Impact: <strong>~72 kg CO₂ avoided from organic landfill decomposition</strong></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- UNIFIED ECOSYSTEM ARCHITECTURE -->
+  <section id="impact" class="py-24 bg-white relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-brand-600">Unified Architecture</span>
+        <h2 class="headline-font text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2">
+          How The Three Products Reinforce Each Other
+        </h2>
+        <p class="text-slate-600 mt-3 text-base sm:text-lg">
+          SahajSetu is not three disconnected software tools—it is a closed-loop socio-economic flywheel.
+        </p>
+      </div>
+
+      <!-- Flowchart / Synergy Grid -->
+      <div class="grid lg:grid-cols-3 gap-8 relative">
+        
+        <!-- Step 1 -->
+        <div class="relative bg-slate-50 rounded-3xl p-8 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg mb-6 shadow-md shadow-indigo-600/20">
+              1
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Demand Aggregation</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Thousands of <strong>Local Shop AI</strong> terminals aggregate tomorrow's staple demands (onions, grains, lentils) across neighborhoods in real-time.
+            </p>
+          </div>
+          <div class="mt-6 pt-6 border-t border-slate-200 text-xs font-semibold text-indigo-700 flex items-center">
+            <span>Feeds purchase orders into FarmLink</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative bg-slate-50 rounded-3xl p-8 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg mb-6 shadow-md shadow-emerald-600/20">
+              2
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Direct Harvest Procurement</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              <strong>FarmLink Marketplace</strong> matches bulk retailer demand against active FPO harvests, delivering wholesale crates directly to store doorsteps before morning opening.
+            </p>
+          </div>
+          <div class="mt-6 pt-6 border-t border-slate-200 text-xs font-semibold text-emerald-700 flex items-center">
+            <span>Monitors near-expiry stock via AI</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative bg-slate-50 rounded-3xl p-8 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-600 text-white flex items-center justify-center font-bold text-lg mb-6 shadow-md shadow-amber-600/20">
+              3
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Zero-Waste Social Routing</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Any unsellable produce or surplus retail perishables are automatically routed to <strong>FoodShare Network</strong> for same-day community nutrition, ensuring zero waste.
+            </p>
+          </div>
+          <div class="mt-6 pt-6 border-t border-slate-200 text-xs font-semibold text-amber-700 flex items-center">
+            <span>Generates ESG credits & local goodwill</span>
+            <i data-lucide="check-circle" class="w-4 h-4 ml-1"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Trust Metrics Bar -->
+      <div class="mt-16 bg-gradient-to-r from-slate-900 via-brand-900 to-slate-900 text-white rounded-3xl p-8 sm:p-12 shadow-xl">
+        <div class="grid sm:grid-cols-4 gap-8 text-center divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+          <div class="pt-4 sm:pt-0">
+            <p class="headline-font text-3xl sm:text-4xl font-extrabold text-emerald-400">12,400+</p>
+            <p class="text-xs uppercase tracking-wider text-slate-300 mt-1 font-semibold">Active Kirana Partners</p>
+          </div>
+          <div class="pt-4 sm:pt-0">
+            <p class="headline-font text-3xl sm:text-4xl font-extrabold text-amber-400">8,500+</p>
+            <p class="text-xs uppercase tracking-wider text-slate-300 mt-1 font-semibold">Farmers & FPO Members</p>
+          </div>
+          <div class="pt-4 sm:pt-0">
+            <p class="headline-font text-3xl sm:text-4xl font-extrabold text-teal-400">450,000+</p>
+            <p class="text-xs uppercase tracking-wider text-slate-300 mt-1 font-semibold">Meals Rescued</p>
+          </div>
+          <div class="pt-4 sm:pt-0">
+            <p class="headline-font text-3xl sm:text-4xl font-extrabold text-indigo-400">98.4%</p>
+            <p class="text-xs uppercase tracking-wider text-slate-300 mt-1 font-semibold">Voice Billing Accuracy</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PILOT ONBOARDING & CONTACT FORM -->
+  <section id="contact" class="py-20 bg-slate-50 relative z-10 scroll-mt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-white rounded-3xl p-8 sm:p-14 shadow-xl border border-slate-200">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs uppercase font-extrabold tracking-widest text-brand-600">Join the Revolution</span>
+          <h2 class="headline-font text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">
+            Bring SahajSetu to Your Region
+          </h2>
+          <p class="text-slate-600 mt-2 text-sm sm:text-base">
+            Whether you are a shop owner, farmer co-operative, civic NGO, or government partner, we want to build with you.
+          </p>
+        </div>
+
+        <form id="onboardingForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Your Full Name</label>
+              <input type="text" required placeholder="e.g. Vikram Sharma" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Phone / WhatsApp Number</label>
+              <input type="tel" required placeholder="+91 98765 43210" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">I am interested in</label>
+              <select id="productInterest" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm text-slate-700">
+                <option value="all">Entire SahajSetu Ecosystem</option>
+                <option value="local-shop-ai">Local Shop AI (Store POS & Voice Billing)</option>
+                <option value="farmlink">FarmLink Marketplace (Farmer/Wholesale Supply)</option>
+                <option value="foodshare">FoodShare Network (Surplus Food & NGO Aid)</option>
+                <option value="investor">Investment & Strategic Partnerships</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">City / District / State</label>
+              <input type="text" required placeholder="e.g. Nashik, Maharashtra" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Your Organization / Details</label>
+            <textarea rows="3" placeholder="Tell us about your store, farm cluster, or community hunger relief goals..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"></textarea>
+          </div>
+
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-xs text-slate-500">🔒 Zero spam. We reply within 24 hours on WhatsApp.</span>
+            <button type="submit" class="px-8 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-lg shadow-brand-600/30 transition-all">
+              Submit Pilot Application
+            </button>
+          </div>
+
+          <div id="formSuccess" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold text-center">
+            🎉 Thank you for joining SahajSetu! Our regional community coordinator will connect with you shortly.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-16 border-t border-slate-800 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+        
+        <!-- Brand Info -->
+        <div class="col-span-2 space-y-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-amber-500 flex items-center justify-center text-white font-bold">
+              <i data-lucide="network" class="w-5 h-5"></i>
+            </div>
+            <span class="text-xl font-extrabold tracking-tight headline-font text-white">
+              SAHAJ<span class="text-brand-500">SETU</span>
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+            Building accessible technology bridges across the Indian grassroots economy. Unifying small merchants, agricultural producers, and humanitarian relief.
+          </p>
+          <div class="flex space-x-3 text-slate-400 pt-2">
+            <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+
+        <!-- Product 1 Links -->
+        <div>
+          <h4 class="text-xs uppercase tracking-wider font-bold text-white mb-3">Local Shop AI</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#local-shop-ai" class="hover:text-white transition">Voice POS Billing</a></li>
+            <li><a href="#local-shop-ai" class="hover:text-white transition">Inventory AI</a></li>
+            <li><a href="#local-shop-ai" class="hover:text-white transition">WhatsApp Khata</a></li>
+            <li><a href="#local-shop-ai" class="hover:text-white transition">Retailer Hardware</a></li>
+          </ul>
+        </div>
+
+        <!-- Product 2 Links -->
+        <div>
+          <h4 class="text-xs uppercase tracking-wider font-bold text-white mb-3">FarmLink</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#farmlink" class="hover:text-white transition">FPO Marketplace</a></li>
+            <li><a href="#farmlink" class="hover:text-white transition">Direct Wholesale</a></li>
+            <li><a href="#farmlink" class="hover:text-white transition">Cold-chain Routing</a></li>
+            <li><a href="#farmlink" class="hover:text-white transition">Fair Price Index</a></li>
+          </ul>
+        </div>
+
+        <!-- Product 3 Links -->
+        <div>
+          <h4 class="text-xs uppercase tracking-wider font-bold text-white mb-3">FoodShare</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#foodshare" class="hover:text-white transition">Surplus Dispatch</a></li>
+            <li><a href="#foodshare" class="hover:text-white transition">NGO Partner Network</a></li>
+            <li><a href="#foodshare" class="hover:text-white transition">Food Safety Protocol</a></li>
+            <li><a href="#foodshare" class="hover:text-white transition">ESG Tax Credits</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+        <p>&copy; 2026 SAHAJSETU TECHNOLOGIES PRIVATE LIMITED. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 sm:mt-0">
+          <a href="#" class="hover:text-slate-400">Privacy Policy</a>
+          <a href="#" class="hover:text-slate-400">Terms of Service</a>
+          <a href="#" class="hover:text-slate-400">Grassroots Impact Whitepaper</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DYNAMIC MODAL FOR ACTION CLICKS -->
+  <div id="generalModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative">
+      <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div id="modalContent">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTOR PITCH DECK & UNIT ECONOMICS MODAL -->
+  <div id="investorModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 text-white rounded-3xl max-w-3xl w-full p-6 sm:p-10 shadow-2xl border border-slate-700 relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeInvestorDeck()" class="absolute top-6 right-6 text-slate-400 hover:text-white transition">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="flex items-center space-x-2 text-brand-400 text-xs font-bold uppercase tracking-widest mb-2">
+        <i data-lucide="briefcase" class="w-4 h-4"></i>
+        <span>Investor Deck & Financial Strategy</span>
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-white">SAHAJSETU: The Grassroots Flywheel</h2>
+      <p class="text-slate-400 text-sm mt-1">Bridging India's \$800B unorganized retail, \$370B agriculture, and zero-waste civic grid.</p>
+
+      <div class="grid sm:grid-cols-3 gap-4 mt-6">
+        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700">
+          <span class="text-xs text-slate-400 font-bold block">Target Addressable Market</span>
+          <span class="text-2xl font-black text-emerald-400">\$1.17 Trillion</span>
+          <span class="text-[11px] text-slate-400 block mt-1">13M Kiranas + 140M Farmers</span>
+        </div>
+        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700">
+          <span class="text-xs text-slate-400 font-bold block">Blended Take Rate</span>
+          <span class="text-2xl font-black text-blue-400">3.8% – 5.2%</span>
+          <span class="text-[11px] text-slate-400 block mt-1">SaaS + B2B Arbitrage + ESG</span>
+        </div>
+        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700">
+          <span class="text-xs text-slate-400 font-bold block">Projected 3-Yr ARR</span>
+          <span class="text-2xl font-black text-amber-400">₹142 Crore</span>
+          <span class="text-[11px] text-slate-400 block mt-1">Across 12 Agricultural Clusters</span>
+        </div>
+      </div>
+
+      <!-- Monetization breakdown -->
+      <div class="mt-8 space-y-4">
+        <h3 class="text-base font-bold text-slate-200">Three Complementary Revenue Streams:</h3>
+        <div class="grid sm:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-2xl bg-indigo-950/60 border border-indigo-800/60">
+            <span class="font-bold text-indigo-300 block mb-1">1. Local Shop AI</span>
+            <p class="text-slate-300">Freemium voice billing; ₹499/mo premium tier for automated supplier replenishment, GST filing, and credit ledger recovery.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-emerald-950/60 border border-emerald-800/60">
+            <span class="font-bold text-emerald-300 block mb-1">2. FarmLink Marketplace</span>
+            <p class="text-slate-300">2.5% platform transaction fee on direct farmer-to-kirana bulk orders + 1.2% pooled cold-chain logistics facilitation fee.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-amber-950/60 border border-amber-800/60">
+            <span class="font-bold text-amber-300 block mb-1">3. FoodShare Network</span>
+            <p class="text-slate-300">B2B enterprise sustainability audits, certified carbon-offset credits for hospitality chains, and verified ESG compliance reporting.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Growth Milestones Roadmap -->
+      <div class="mt-8 pt-6 border-t border-slate-800">
+        <h3 class="text-sm font-bold text-slate-300 mb-3">Target Execution Roadmap (2026–2028):</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div class="p-3 rounded-xl bg-slate-800 border border-slate-700">
+            <span class="text-brand-400 font-bold block">Phase 1 (Months 1–6)</span>
+            <span class="text-white font-semibold">10,000 Kiranas & 2 FPOs</span>
+            <p class="text-slate-400 mt-1">Nashik & Pune corridors; launch voice billing in Hindi & Marathi.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-800 border border-slate-700">
+            <span class="text-blue-400 font-bold block">Phase 2 (Months 7–18)</span>
+            <span class="text-white font-semibold">50,000 Stores & 15 Mandis</span>
+            <p class="text-slate-400 mt-1">Expansion to Uttar Pradesh, Gujarat & Tamil Nadu with multilingual NLP.</p>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-800 border border-slate-700">
+            <span class="text-amber-400 font-bold block">Phase 3 (Months 19–36)</span>
+            <span class="text-white font-semibold">250,000 Stores & Pan-India</span>
+            <p class="text-slate-400 mt-1">Full circular economy mesh; 10M+ meals saved and nationwide cold chain.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+        <div class="text-xs text-slate-400">
+          Want the full confidential data room? Email: <a href="mailto:invest@sahajsetu.in" class="text-brand-400 underline">invest@sahajsetu.in</a>
+        </div>
+        <button onclick="closeInvestorDeck(); document.getElementById('contact').scrollIntoView({behavior: 'smooth'});" class="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-lg transition">
+          Request Investor Pitch Deck PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Scroll helper
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Interactive Simulator Tabs
+    function switchSimTab(tabId) {
+      document.querySelectorAll('.sim-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.sim-tab-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'bg-emerald-600', 'bg-amber-600', 'text-white');
+        btn.classList.add('text-slate-300');
+      });
+
+      const activeTab = document.getElementById(tabId);
+      activeTab.classList.remove('hidden');
+
+      if (tabId === 'tab-local') {
+        const btn = document.getElementById('btn-tab-local');
+        btn.classList.add('bg-indigo-600', 'text-white');
+        btn.classList.remove('text-slate-300');
+      } else if (tabId === 'tab-farmlink') {
+        const btn = document.getElementById('btn-tab-farmlink');
+        btn.classList.add('bg-emerald-600', 'text-white');
+        btn.classList.remove('text-slate-300');
+        calcFarmSavings();
+      } else if (tabId === 'tab-foodshare') {
+        const btn = document.getElementById('btn-tab-foodshare');
+        btn.classList.add('bg-amber-600', 'text-white');
+        btn.classList.remove('text-slate-300');
+      }
+    }
+
+    // Voice Simulator Action
+    function runVoiceSim(lang) {
+      const container = document.getElementById('voice-items-container');
+      const total = document.getElementById('voice-total');
+      const timer = document.getElementById('voice-timer');
+
+      if (lang === 'hindi') {
+        timer.textContent = "Response time: 0.26s";
+        container.innerHTML = `
+          <div class="flex justify-between"><span>• 1 L Mustard Oil (Kachi Ghani)</span> <span class="text-white">₹145.00</span></div>
+          <div class="flex justify-between"><span>• Curd Pouch 400g (x2)</span> <span class="text-white">₹64.00</span></div>
+          <div class="flex justify-between"><span>• Gram Flour (Besan) 500g</span> <span class="text-white">₹48.00</span></div>
+        `;
+        total.textContent = "₹257.00";
+      } else if (lang === 'bengali') {
+        timer.textContent = "Response time: 0.22s";
+        container.innerHTML = `
+          <div class="flex justify-between"><span>• Tea Leaves Premium 250g</span> <span class="text-white">₹95.00</span></div>
+          <div class="flex justify-between"><span>• Refined Sugar 500g</span> <span class="text-white">₹24.00</span></div>
+          <div class="flex justify-between"><span>• Marie Biscuits Family Pack (x2)</span> <span class="text-white">₹70.00</span></div>
+        `;
+        total.textContent = "₹189.00";
+      } else if (lang === 'marathi') {
+        timer.textContent = "Response time: 0.31s";
+        container.innerHTML = `
+          <div class="flex justify-between"><span>• Kolam Rice (Polished 1kg)</span> <span class="text-white">₹62.00</span></div>
+          <div class="flex justify-between"><span>• Sago / Sabudana 500g (x2)</span> <span class="text-white">₹76.00</span></div>
+        `;
+        total.textContent = "₹138.00";
+      }
+    }
+
+    // FarmLink Savings Calculator
+    const cropPrices = {
+      onion: { mandi: 32, farmlink: 23 },
+      potato: { mandi: 24, farmlink: 16 },
+      tomato: { mandi: 35, farmlink: 24 },
+      wheat: { mandi: 38, farmlink: 29 }
+    };
+
+    function calcFarmSavings() {
+      const crop = document.getElementById('crop-select').value;
+      const vol = parseInt(document.getElementById('procure-volume').value);
+      document.getElementById('volume-label').textContent = `${vol.toLocaleString()} kg / mo`;
+
+      const rates = cropPrices[crop];
+      const tradCost = vol * rates.mandi;
+      const farmCost = vol * rates.farmlink;
+      const savings = tradCost - farmCost;
+
+      document.getElementById('cost-traditional').textContent = `₹${tradCost.toLocaleString()}`;
+      document.getElementById('cost-farmlink').textContent = `₹${farmCost.toLocaleString()}`;
+      document.getElementById('savings-amount').textContent = `₹${savings.toLocaleString()} saved`;
+    }
+
+    // FoodShare Rescue Simulator
+    function triggerFoodRescue(qty, desc) {
+      document.getElementById('rescue-title').textContent = `Dispatched: ${desc} (${qty} items/kg)`;
+      const box = document.getElementById('rescue-status-box');
+      box.classList.add('ring-2', 'ring-amber-500');
+      setTimeout(() => box.classList.remove('ring-2', 'ring-amber-500'), 1000);
+    }
+
+    // Modal Handling
+    function openModal(type) {
+      const modal = document.getElementById('generalModal');
+      const content = document.getElementById('modalContent');
+      modal.classList.remove('hidden');
+
+      let title = "Join the SahajSetu Network";
+      let desc = "Experience the collective advantage of intelligent grassroots infrastructure.";
+
+      if (type === 'local-shop-ai') {
+        title = "Install Local Shop AI";
+        desc = "Equip your shop with voice billing, WhatsApp orders, and predictive stock replenishment.";
+      } else if (type === 'farmlink') {
+        title = "Onboard on FarmLink";
+        desc = "Farmers & FPOs can list fresh harvests directly without mandi middlemen commissions.";
+      } else if (type === 'foodshare') {
+        title = "Join FoodShare Network";
+        desc = "Shelters, NGOs, caterers, and restaurants can link up to eliminate food waste.";
+      }
+
+      content.innerHTML = `
+        <div class="space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold mb-2">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-2xl font-extrabold text-slate-900">${title}</h3>
+          <p class="text-slate-600 text-sm">${desc}</p>
+          <div class="space-y-3 pt-2">
+            <input type="text" placeholder="Your Name" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+            <input type="tel" placeholder="Mobile / WhatsApp" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+            <button onclick="closeModal(); document.getElementById('contact').scrollIntoView({behavior: 'smooth'});" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-md transition">
+              Proceed to Onboarding Form
+            </button>
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    function closeModal() {
+      document.getElementById('generalModal').classList.add('hidden');
+    }
+
+    // Investor Deck Modal
+    function openInvestorDeck() {
+      document.getElementById('investorModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeInvestorDeck() {
+      document.getElementById('investorModal').classList.add('hidden');
+    }
+
+    // Live Web Speech Recognition
+    let recognition = null;
+    let isListening = false;
+
+    function toggleLiveMic() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const statusText = document.getElementById('mic-transcript');
+      const indicator = document.getElementById('mic-indicator');
+      const micLabel = document.getElementById('mic-label');
+      const micBtn = document.getElementById('btn-mic-toggle');
+
+      if (!SpeechRecognition) {
+        statusText.innerHTML = '<span class="text-amber-400 font-bold">Web Speech API not supported. Please open in Google Chrome or MS Edge.</span>';
+        return;
+      }
+
+      if (isListening) {
+        if (recognition) recognition.stop();
+        return;
+      }
+
+      try {
+        recognition = new SpeechRecognition();
+        recognition.lang = 'hi-IN'; // Works seamlessly for Hindi, Hinglish and Indian English
+        recognition.interimResults = true;
+        recognition.maxAlternatives = 1;
+
+        recognition.onstart = function() {
+          isListening = true;
+          indicator.className = 'inline-block w-2.5 h-2.5 rounded-full bg-red-500 animate-ping';
+          micLabel.textContent = 'Listening... Speak Now (Say: 2 kg Atta aur 1 packet Namak)';
+          statusText.textContent = 'Listening to your microphone...';
+          micBtn.classList.add('ring-4', 'ring-red-500/50');
+        };
+
+        recognition.onresult = function(event) {
+          const transcript = Array.from(event.results)
+            .map(result => result[0].transcript)
+            .join('');
+
+          statusText.innerHTML = `<span class="text-emerald-400 font-semibold">Heard:</span> "${transcript}"`;
+
+          if (event.results[0].isFinal) {
+            parseLiveSpokenGrocery(transcript);
+          }
+        };
+
+        recognition.onerror = function(event) {
+          statusText.textContent = 'Mic status: ' + (event.error === 'not-allowed' ? 'Microphone permission blocked. Please allow mic access.' : event.error);
+          resetMicUI();
+        };
+
+        recognition.onend = function() {
+          resetMicUI();
+        };
+
+        recognition.start();
+      } catch (err) {
+        statusText.textContent = 'Error starting mic: ' + err.message;
+        resetMicUI();
+      }
+    }
+
+    function resetMicUI() {
+      isListening = false;
+      const indicator = document.getElementById('mic-indicator');
+      const micLabel = document.getElementById('mic-label');
+      const micBtn = document.getElementById('btn-mic-toggle');
+      if (indicator) indicator.className = 'inline-block w-2 h-2 rounded-full bg-slate-500';
+      if (micLabel) micLabel.textContent = 'Speak via Microphone (Live)';
+      if (micBtn) micBtn.classList.remove('ring-4', 'ring-red-500/50');
+    }
+
+    function parseLiveSpokenGrocery(text) {
+      const lower = text.toLowerCase();
+      const itemsContainer = document.getElementById('voice-items-container');
+      const totalEl = document.getElementById('voice-total');
+      const timerEl = document.getElementById('voice-timer');
+
+      const catalog = [
+        { key: ['atta', 'aata', 'wheat flour'], name: 'Chakki Fresh Atta (5 kg)', price: 210 },
+        { key: ['rice', 'chawal', 'tandool'], name: 'Premium Kolam Rice (1 kg)', price: 65 },
+        { key: ['oil', 'tel', 'sarson'], name: 'Mustard Oil (Kachi Ghani 1L)', price: 145 },
+        { key: ['sugar', 'cheeni', 'shakkar'], name: 'Refined Sugar (1 kg)', price: 44 },
+        { key: ['salt', 'namak'], name: 'Iodized Salt (1 kg packet)', price: 28 },
+        { key: ['milk', 'doodh'], name: 'Fresh Full Cream Milk (500ml)', price: 34 },
+        { key: ['tea', 'chai', 'chaapata'], name: 'Assam Gold Tea (250g)', price: 95 },
+        { key: ['dal', 'daal', 'besan'], name: 'Chana Dal / Besan (500g)', price: 58 },
+        { key: ['soap', 'sabun'], name: 'Antiseptic Soap Bar (x3)', price: 75 },
+        { key: ['biscuit', 'biskut'], name: 'Glucose Biscuits Family Pack', price: 35 }
+      ];
+
+      let found = [];
+      let total = 0;
+
+      catalog.forEach(item => {
+        if (item.key.some(k => lower.includes(k))) {
+          found.push(item);
+          total += item.price;
+        }
+      });
+
+      // Default fallback if no specific keyword detected
+      if (found.length === 0) {
+        found = [
+          { name: `Recognized: "${text}"`, price: 120 },
+          { name: 'Standard Kirana Packing Surcharge', price: 10 }
+        ];
+        total = 130;
+      }
+
+      timerEl.textContent = 'Live Mic Parsed in 0.14s (Browser Speech Engine)';
+      itemsContainer.innerHTML = found.map(item => `
+        <div class="flex justify-between items-center py-1 border-b border-slate-900/50">
+          <span>• ${item.name}</span>
+          <span class="text-white font-bold">₹${item.price.toFixed(2)}</span>
+        </div>
+      `).join('');
+
+      totalEl.textContent = `₹${total.toFixed(2)}`;
+    }
+
+    // Form submission handler with LocalStorage saving
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        name: form.querySelector('input[type="text"]')?.value || 'Guest Partner',
+        phone: form.querySelector('input[type="tel"]')?.value || 'N/A',
+        role: form.querySelector('select')?.value || 'General',
+        timestamp: new Date().toISOString()
+      };
+
+      // Save to localStorage
+      try {
+        const stored = JSON.parse(localStorage.getItem('sahajsetu_leads') || '[]');
+        stored.push(data);
+        localStorage.setItem('sahajsetu_leads', JSON.stringify(stored));
+      } catch (err) {}
+
+      document.getElementById('formSuccess').classList.remove('hidden');
+      form.reset();
+    }
+  </script>
+</body>
+</html>
