@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SAHAJSETU — Empowering Grassroots Commerce, Agriculture & Food Security</title>
+  <!-- PWA & Google Play Store Mobile Meta Tags -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#15803d">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SahajSetu">
+  <link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
   <meta name="description" content="SahajSetu is the unified grassroots ecosystem powering Local Shop AI, FarmLink Marketplace, and FoodShare Network.">
 
   <!-- Tailwind CSS CDN with Plugins -->
@@ -1213,8 +1222,8 @@
       <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
         <p>&copy; 2026 SAHAJSETU TECHNOLOGIES PRIVATE LIMITED. All rights reserved.</p>
         <div class="flex space-x-6 mt-4 sm:mt-0">
-          <a href="#" class="hover:text-slate-400">Privacy Policy</a>
-          <a href="#" class="hover:text-slate-400">Terms of Service</a>
+          <a href="/privacy-policy.html" class="hover:text-slate-400">Privacy Policy</a>
+          <a href="/terms-of-service.html" class="hover:text-slate-400">Terms of Service</a>
           <a href="#" class="hover:text-slate-400">Grassroots Impact Whitepaper</a>
         </div>
       </div>
@@ -1622,6 +1631,17 @@
 
       document.getElementById('formSuccess').classList.remove('hidden');
       form.reset();
+    }
+  
+    // Service Worker Registration for PWA & Play Store
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then((reg) => {
+          console.log('[SahajSetu PWA] Service Worker registered:', reg.scope);
+        }).catch((err) => {
+          console.log('[SahajSetu PWA] Service Worker failed:', err);
+        });
+      });
     }
   </script>
 </body>

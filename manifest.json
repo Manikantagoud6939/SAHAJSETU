@@ -1,0 +1,53 @@
+{
+  "name": "SAHAJSETU — Grassroots Ecosystem",
+  "short_name": "SahajSetu",
+  "description": "Empowering micro-merchants with Local Shop AI, connecting farmers directly via FarmLink, and eliminating food waste with FoodShare Network.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#052e16",
+  "theme_color": "#15803d",
+  "lang": "en-IN",
+  "categories": ["business", "productivity", "shopping", "food"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Local Shop AI",
+      "short_name": "Shop AI",
+      "url": "/#local-shop-ai",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "FarmLink Marketplace",
+      "short_name": "FarmLink",
+      "url": "/#farmlink",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "FoodShare Network",
+      "short_name": "FoodShare",
+      "url": "/#foodshare",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "packageId": "com.sahajsetu.app",
+  "host": "sahajsetu.vercel.app",
+  "name": "SAHAJSETU",
+  "launcherName": "SahajSetu",
+  "themeColor": "#15803d",
+  "navigationColor": "#052e16",
+  "backgroundColor": "#052e16",
+  "startUrl": "/",
+  "iconUrl": "https://sahajsetu.vercel.app/icons/icon-512.png",
+  "maskableIconUrl": "https://sahajsetu.vercel.app/icons/icon-512.png",
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "shortcuts": [
+    {
+      "name": "Local Shop AI",
+      "shortName": "Shop AI",
+      "url": "https://sahajsetu.vercel.app/#local-shop-ai",
+      "icon": "https://sahajsetu.vercel.app/icons/icon-192.png"
+    },
+    {
+      "name": "FarmLink",
+      "shortName": "FarmLink",
+      "url": "https://sahajsetu.vercel.app/#farmlink",
+      "icon": "https://sahajsetu.vercel.app/icons/icon-192.png"
+    },
+    {
+      "name": "FoodShare",
+      "shortName": "FoodShare",
+      "url": "https://sahajsetu.vercel.app/#foodshare",
+      "icon": "https://sahajsetu.vercel.app/icons/icon-192.png"
+    }
+  ],
+  "webManifestUrl": "https://sahajsetu.vercel.app/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": {
+      "enabled": true
+    },
+    "playBilling": {
+      "enabled": false
+    }
+  },
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableNotifications": true
+}
