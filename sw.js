@@ -1,7 +1,8 @@
-const CACHE_NAME = 'sahajsetu-cache-v2';
+const CACHE_NAME = 'sahajsetu-cache-v3';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
+  '/dashboard.html',
   '/shop.html',
   '/farming.html',
   '/manifest.json',

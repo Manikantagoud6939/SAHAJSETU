@@ -3,6 +3,7 @@
   "name": "sahajsetu-ecosystem",
   "cleanUrls": true,
   "rewrites": [
+    { "source": "/dashboard", "destination": "/dashboard.html" },
     { "source": "/shop", "destination": "/shop.html" },
     { "source": "/farming", "destination": "/farming.html" },
     { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
