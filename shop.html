@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Local Shop AI — Smart Kirana Operating System</title>
+  <meta name="description" content="Dedicated merchant app for voice-powered billing, inventory intelligence, Khata digital credit ledger, and direct FarmLink procurement.">
+  
+  <!-- PWA Manifest & App Metas -->
+  <link rel="manifest" href="/manifest-shop.json">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            shop: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .safe-bottom { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 h-full flex flex-col antialiased selection:bg-shop-600 selection:text-white">
+
+  <!-- TOP HEADER -->
+  <header class="bg-shop-700 text-white sticky top-0 z-40 shadow-md">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="/" class="p-1.5 rounded-lg bg-shop-800 text-shop-200 hover:text-white transition" title="Back to SahajSetu Home">
+          <i data-lucide="arrow-left" class="w-5 h-5"></i>
+        </a>
+        <div class="w-9 h-9 rounded-xl bg-white text-shop-700 flex items-center justify-center font-bold shadow">
+          <i data-lucide="store" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="font-extrabold text-base leading-tight">Local Shop AI</h1>
+            <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-400 text-slate-900 px-1.5 py-0.5 rounded">Store Online</span>
+          </div>
+          <p class="text-[11px] text-shop-200">Shri Krishna Super Store • GSTIN: 27AABCS1429B1Z</p>
+        </div>
+      </div>
+
+      <!-- Quick Switch to Farming App / Settings -->
+      <div class="flex items-center space-x-2">
+        <a href="/farming.html" class="hidden sm:inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition shadow-sm">
+          <i data-lucide="sprout" class="w-3.5 h-3.5"></i>
+          <span>Switch to Farming App</span>
+        </a>
+        <button onclick="openNotificationModal()" class="p-2 rounded-lg bg-shop-800 hover:bg-shop-600 text-white relative">
+          <i data-lucide="bell" class="w-4 h-4"></i>
+          <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="flex-1 max-w-4xl w-full mx-auto p-4 safe-bottom overflow-y-auto">
+
+    <!-- VIEW 1: POS BILLING & VOICE ASSISTANT (Default) -->
+    <div id="view-billing" class="tab-view space-y-4">
+      
+      <!-- Voice AI Banner -->
+      <div class="bg-gradient-to-r from-shop-700 via-shop-600 to-indigo-700 text-white rounded-2xl p-4 sm:p-5 shadow-lg border border-shop-500/30">
+        <div class="flex items-start justify-between">
+          <div class="space-y-1">
+            <span class="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-300">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+              <span>Ambient Vernacular Voice Engine</span>
+            </span>
+            <h2 class="text-lg sm:text-xl font-extrabold">Instant Voice Billing (बोलकर बिल बनाएं)</h2>
+            <p class="text-xs text-shop-100 max-w-lg">
+              Press the mic or tap a sample phrase to instantly extract line items, prices, and GST.
+            </p>
+          </div>
+          <button id="micBtn" onclick="toggleSpeechRecording()" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white text-shop-700 hover:scale-105 active:scale-95 flex flex-col items-center justify-center shadow-xl transition-all duration-200">
+            <i data-lucide="mic" id="micIcon" class="w-6 h-6 stroke-[2.5]"></i>
+            <span id="micLabel" class="text-[10px] font-bold mt-0.5">Speak</span>
+          </button>
+        </div>
+
+        <!-- Sample Voice Prompts Bar -->
+        <div class="mt-4 pt-3 border-t border-white/20 flex flex-wrap gap-2 text-xs">
+          <span class="text-shop-200 font-semibold self-center">Quick tests:</span>
+          <button onclick="applySampleVoice('2 packet doodh, 1 kilo atta, 250g chai')" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/20 transition">
+            "2 packet doodh, 1 kilo atta, 250g chai"
+          </button>
+          <button onclick="applySampleVoice('Ramesh Bhai: 5 kilo basmati chawal, 1 mustard oil, 1 kg cheeni')" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/20 transition">
+            "Ramesh: 5 kg chawal, 1 mustard oil, 1 kg cheeni"
+          </button>
+          <button onclick="applySampleVoice('3 surf excel soap, 2 dahi pouch, 500g besan')" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/20 transition">
+            "3 soap, 2 dahi pouch, 500g besan"
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Voice Transcription Feed -->
+      <div id="voiceTranscriptBox" class="bg-white rounded-xl p-3 border border-slate-200 shadow-sm flex items-center justify-between text-xs">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="audio-lines" class="w-4 h-4 text-shop-600 animate-pulse"></i>
+          <span class="text-slate-500 font-semibold">Heard:</span>
+          <span id="transcriptionText" class="font-mono text-slate-800 italic">"Waiting for voice command or quick test..."</span>
+        </div>
+        <span id="latencyBadge" class="text-[10px] font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold">Latency: 0.18s</span>
+      </div>
+
+      <!-- POS Terminal Grid -->
+      <div class="grid md:grid-cols-12 gap-4">
+        
+        <!-- Left Column: Item Catalog / Fast Picker -->
+        <div class="md:col-span-7 space-y-3">
+          <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="font-extrabold text-sm text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="layout-grid" class="w-4 h-4 text-shop-600"></i>
+                <span>Fast Item Picker</span>
+              </h3>
+              <div class="relative w-44">
+                <input type="text" id="catalogSearch" oninput="filterCatalog()" placeholder="Search item..." class="w-full text-xs pl-7 pr-2 py-1.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-1 focus:ring-shop-500">
+                <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-2 top-2"></i>
+              </div>
+            </div>
+
+            <!-- Items Quick Tiles -->
+            <div id="catalogGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-72 overflow-y-auto pr-1">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Direct FarmLink Sourced Banner -->
+          <div class="bg-emerald-50 rounded-2xl p-3.5 border border-emerald-200 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold shadow-sm">
+                <i data-lucide="sprout" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="font-bold text-xs text-slate-900">FarmLink Direct Sourced</p>
+                <p class="text-[11px] text-emerald-700 font-medium">Nashik Red Onions & Potatoes in stock</p>
+              </div>
+            </div>
+            <button onclick="switchTab('tab-farmlink-orders')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition">
+              Order More
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Active Bill & Checkout -->
+        <div class="md:col-span-5">
+          <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-col h-full space-y-4">
+            
+            <!-- Cart Header -->
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div>
+                <h3 class="font-extrabold text-sm text-slate-900 flex items-center gap-1.5">
+                  <i data-lucide="receipt" class="w-4 h-4 text-shop-600"></i>
+                  <span>Current Bill</span>
+                </h3>
+                <p class="text-[10px] text-slate-400 font-mono">Invoice #SS-2026-9812</p>
+              </div>
+              <button onclick="clearCart()" class="text-[11px] text-red-600 hover:text-red-700 font-bold flex items-center gap-1">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Clear
+              </button>
+            </div>
+
+            <!-- Cart Items List -->
+            <div id="cartItemsList" class="flex-1 space-y-2 overflow-y-auto max-h-64 pr-1 text-xs">
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- Total Calculation Ledger -->
+            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 space-y-1.5 text-xs">
+              <div class="flex justify-between text-slate-500">
+                <span>Subtotal</span>
+                <span id="billSubtotal" class="mono font-semibold">₹0.00</span>
+              </div>
+              <div class="flex justify-between text-slate-500">
+                <span>GST (CGST 2.5% + SGST 2.5%)</span>
+                <span id="billGst" class="mono font-semibold">₹0.00</span>
+              </div>
+              <div class="flex justify-between text-slate-900 font-extrabold text-base pt-2 border-t border-slate-200">
+                <span>Total Due</span>
+                <span id="billTotal" class="mono text-shop-700 text-lg">₹0.00</span>
+              </div>
+            </div>
+
+            <!-- Customer Name & Payment Actions -->
+            <div class="space-y-2 pt-1">
+              <div class="flex space-x-2">
+                <input type="text" id="customerPhone" placeholder="Customer Mobile / Name" class="flex-1 text-xs px-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-1 focus:ring-shop-500">
+                <button onclick="addToKhata()" title="Add directly to customer credit ledger" class="px-3 py-2 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-800 text-xs font-bold transition flex items-center gap-1">
+                  <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+                  <span>Khata</span>
+                </button>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="completeCheckout('cash')" class="py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow">
+                  <i data-lucide="banknote" class="w-4 h-4"></i>
+                  <span>Cash / Card</span>
+                </button>
+                <button onclick="completeCheckout('upi')" class="py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow">
+                  <i data-lucide="qr-code" class="w-4 h-4"></i>
+                  <span>UPI QR</span>
+                </button>
+              </div>
+
+              <button onclick="sendBillWhatsApp()" class="w-full py-2.5 rounded-xl bg-green-500 hover:bg-green-600 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span>Send Bill on WhatsApp</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- VIEW 2: INVENTORY & PREDICTIVE STOCK -->
+    <div id="view-inventory" class="tab-view hidden space-y-4">
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+              <i data-lucide="boxes" class="w-5 h-5 text-shop-600"></i>
+              <span>Smart Kirana Inventory & AI Replenishment</span>
+            </h2>
+            <p class="text-xs text-slate-500">AI monitors local consumption velocity and alerts before stock runs out.</p>
+          </div>
+          <div class="flex space-x-2">
+            <button onclick="openAddStockModal()" class="px-3.5 py-2 rounded-xl bg-shop-600 hover:bg-shop-700 text-white text-xs font-bold flex items-center gap-1.5 transition">
+              <i data-lucide="plus" class="w-4 h-4"></i> Add New SKU
+            </button>
+            <button onclick="switchTab('tab-farmlink-orders')" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-1.5 transition">
+              <i data-lucide="truck" class="w-4 h-4"></i> Restock from FarmLink
+            </button>
+          </div>
+        </div>
+
+        <!-- AI Stock Alert Banner -->
+        <div class="p-3.5 bg-amber-50 border border-amber-200 rounded-xl flex items-start space-x-3 text-xs text-amber-800">
+          <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5"></i>
+          <div>
+            <span class="font-bold">Stock Critical:</span> Refined Sugar (500g) has only 4 units left. Expected stock-out in 7 hours. Recommended: Reorder 50 units via FarmLink Nashik cluster for ₹21.50/unit.
+          </div>
+        </div>
+
+        <!-- Inventory Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-500 font-semibold border-b border-slate-100">
+              <tr>
+                <th class="py-3 px-3">Item Name & SKU</th>
+                <th class="py-3 px-3">Category</th>
+                <th class="py-3 px-3">In Stock</th>
+                <th class="py-3 px-3">Retail Price</th>
+                <th class="py-3 px-3">Status</th>
+                <th class="py-3 px-3 text-right">Quick Restock</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody" class="divide-y divide-slate-100">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: CUSTOMER KHATA (CREDIT LEDGER) -->
+    <div id="view-khata" class="tab-view hidden space-y-4">
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+              <i data-lucide="book-marked" class="w-5 h-5 text-shop-600"></i>
+              <span>Customer Khata (Digital Ledger & Udhar Tracker)</span>
+            </h2>
+            <p class="text-xs text-slate-500">Track informal neighborhood credit and send 1-click WhatsApp payment reminders with UPI links.</p>
+          </div>
+          <div class="bg-amber-50 px-4 py-2 rounded-xl border border-amber-200 text-xs">
+            <span class="text-slate-500">Total Outstanding Credit:</span>
+            <span class="font-extrabold text-amber-700 mono text-sm ml-1">₹8,420.00</span>
+          </div>
+        </div>
+
+        <!-- Customer List -->
+        <div id="khataList" class="space-y-3">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: DIRECT FARMLINK PROCUREMENT -->
+    <div id="view-farmlink" class="tab-view hidden space-y-4">
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+              <i data-lucide="sprout" class="w-5 h-5 text-emerald-600"></i>
+              <span>FarmLink Wholesale Procurement Portal</span>
+            </h2>
+            <p class="text-xs text-slate-500">Order fresh harvests directly from verified FPOs at zero middleman markup.</p>
+          </div>
+          <a href="/farming.html" class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 flex items-center gap-1">
+            <span>View Farmer App</span> <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <!-- Crop Lots Available -->
+        <div class="grid sm:grid-cols-2 gap-4" id="farmWholesaleGrid">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- BOTTOM MOBILE APP NAVIGATION DOCK -->
+  <nav class="fixed bottom-0 inset-x-0 bg-white border-t border-slate-200/90 z-50 shadow-2xl safe-area">
+    <div class="max-w-md mx-auto grid grid-cols-4 h-16 text-slate-500 text-[10px] font-semibold">
+      
+      <button onclick="switchTab('tab-billing')" id="nav-tab-billing" class="nav-item flex flex-col items-center justify-center space-y-1 text-shop-600 transition">
+        <i data-lucide="receipt" class="w-5 h-5 stroke-[2.2]"></i>
+        <span>Billing POS</span>
+      </button>
+
+      <button onclick="switchTab('tab-inventory')" id="nav-tab-inventory" class="nav-item flex flex-col items-center justify-center space-y-1 hover:text-slate-900 transition">
+        <i data-lucide="boxes" class="w-5 h-5 stroke-[2]"></i>
+        <span>Inventory</span>
+      </button>
+
+      <button onclick="switchTab('tab-khata')" id="nav-tab-khata" class="nav-item flex flex-col items-center justify-center space-y-1 hover:text-slate-900 transition">
+        <i data-lucide="book-marked" class="w-5 h-5 stroke-[2]"></i>
+        <span>Khata Ledger</span>
+      </button>
+
+      <button onclick="switchTab('tab-farmlink-orders')" id="nav-tab-farmlink" class="nav-item flex flex-col items-center justify-center space-y-1 hover:text-slate-900 transition">
+        <i data-lucide="sprout" class="w-5 h-5 stroke-[2]"></i>
+        <span>FarmLink</span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- MODAL NOTIFICATIONS -->
+  <div id="shopModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 relative">
+      <button onclick="closeShopModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div id="shopModalContent" class="space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Initialize Icons
+    lucide.createIcons();
+
+    // Catalog Data
+    const catalog = [
+      { id: 1, name: "Fresh Milk Pouch 500ml", price: 33.00, cat: "Dairy", stock: 24, icon: "cup-soda" },
+      { id: 2, name: "Refined Sugar 500g", price: 24.00, cat: "Staples", stock: 4, icon: "cookie" },
+      { id: 3, name: "Aashirvaad Atta 1kg", price: 45.00, cat: "Staples", stock: 18, icon: "wheat" },
+      { id: 4, name: "Mustard Oil (Kachi Ghani) 1L", price: 145.00, cat: "Oils", stock: 12, icon: "droplet" },
+      { id: 5, name: "Tea Leaves Premium 250g", price: 95.00, cat: "Beverages", stock: 15, icon: "coffee" },
+      { id: 6, name: "Detergent Bar 200g", price: 20.00, cat: "Household", stock: 32, icon: "sparkles" },
+      { id: 7, name: "Nashik Red Onions 1kg", price: 28.00, cat: "Produce", stock: 45, icon: "carrot" },
+      { id: 8, name: "Jyoti Potatoes 1kg", price: 22.00, cat: "Produce", stock: 50, icon: "apple" }
+    ];
+
+    // Khata Customers
+    const khataLedger = [
+      { id: 1, name: "Ramesh Sharma", phone: "+91 98765 11223", balance: 1420.00, lastDate: "Today, 10:15 AM" },
+      { id: 2, name: "Sunita Verma", phone: "+91 98221 44556", balance: 680.00, lastDate: "Yesterday" },
+      { id: 3, name: "Imran Khan", phone: "+91 98112 77889", balance: 2150.00, lastDate: "28 Oct 2026" },
+      { id: 4, name: "Rajesh Patil", phone: "+91 97654 33211", balance: 4170.00, lastDate: "24 Oct 2026" }
+    ];
+
+    // FarmLink Wholesale Offers
+    const farmLots = [
+      { id: 101, crop: "Nashik Red Onions (Grade A)", origin: "Nashik FPO #108", price: 22.50, unit: "kg", minOrder: "50 kg", mandi: 29.00 },
+      { id: 102, crop: "Punjab Jyoti Potatoes", origin: "Jalandhar Agri Cluster", price: 16.00, unit: "kg", minOrder: "100 kg", mandi: 23.00 },
+      { id: 103, crop: "Kolar Hybrid Tomatoes", origin: "Kolar Farmer Group", price: 24.00, unit: "kg", minOrder: "40 kg", mandi: 34.00 },
+      { id: 104, crop: "MP Sharbati Wheat (Milled)", origin: "Sehore Kisan Sangh", price: 29.50, unit: "kg", minOrder: "200 kg", mandi: 38.00 }
+    ];
+
+    let cart = [];
+
+    // Render Fast Catalog
+    function renderCatalog(items = catalog) {
+      const grid = document.getElementById('catalogGrid');
+      grid.innerHTML = items.map(item => `
+        <button onclick="addToCart(${item.id})" class="p-2.5 rounded-xl bg-slate-50 hover:bg-shop-50 border border-slate-200 hover:border-shop-300 text-left transition flex flex-col justify-between group">
+          <div class="flex justify-between items-start w-full">
+            <span class="text-[10px] font-bold text-slate-400 uppercase">${item.cat}</span>
+            <span class="text-[10px] font-bold ${item.stock <= 5 ? 'text-red-500' : 'text-emerald-600'}">${item.stock} left</span>
+          </div>
+          <p class="font-bold text-slate-800 text-xs mt-1 leading-snug group-hover:text-shop-700">${item.name}</p>
+          <div class="mt-2 flex items-center justify-between w-full">
+            <span class="mono font-bold text-xs text-shop-700">₹${item.price.toFixed(2)}</span>
+            <span class="w-5 h-5 rounded-md bg-white border border-slate-200 group-hover:bg-shop-600 group-hover:text-white flex items-center justify-center text-xs font-bold transition">+</span>
+          </div>
+        </button>
+      `).join('');
+    }
+
+    // Filter catalog
+    function filterCatalog() {
+      const q = document.getElementById('catalogSearch').value.toLowerCase();
+      const filtered = catalog.filter(i => i.name.toLowerCase().includes(q) || i.cat.toLowerCase().includes(q));
+      renderCatalog(filtered);
+    }
+
+    // Cart management
+    function addToCart(itemId, qty = 1) {
+      const item = catalog.find(i => i.id === itemId);
+      if (!item) return;
+
+      const existing = cart.find(c => c.id === itemId);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push({ ...item, qty });
+      }
+      renderCart();
+    }
+
+    function updateCartQty(itemId, delta) {
+      const item = cart.find(c => c.id === itemId);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(c => c.id !== itemId);
+      }
+      renderCart();
+    }
+
+    function clearCart() {
+      cart = [];
+      renderCart();
+    }
+
+    function renderCart() {
+      const list = document.getElementById('cartItemsList');
+      if (cart.length === 0) {
+        list.innerHTML = `
+          <div class="text-center py-8 text-slate-400 space-y-2">
+            <i data-lucide="shopping-basket" class="w-8 h-8 mx-auto stroke-[1.5] text-slate-300"></i>
+            <p class="font-medium text-xs">Bill is empty.<br>Speak or tap items on the left to add.</p>
+          </div>
+        `;
+        document.getElementById('billSubtotal').textContent = "₹0.00";
+        document.getElementById('billGst').textContent = "₹0.00";
+        document.getElementById('billTotal').textContent = "₹0.00";
+        lucide.createIcons();
+        return;
+      }
+
+      let subtotal = 0;
+      list.innerHTML = cart.map(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        return `
+          <div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-100">
+            <div class="flex-1 pr-2">
+              <p class="font-bold text-slate-800 leading-tight">${item.name}</p>
+              <p class="mono text-[10px] text-slate-400">₹${item.price.toFixed(2)} / unit</p>
+            </div>
+            <div class="flex items-center space-x-2">
+              <div class="flex items-center bg-white rounded-lg border border-slate-200">
+                <button onclick="updateCartQty(${item.id}, -1)" class="w-6 h-6 flex items-center justify-center text-slate-600 hover:bg-slate-100 rounded-l-lg font-bold">-</button>
+                <span class="mono px-2 text-xs font-bold text-slate-800">${item.qty}</span>
+                <button onclick="updateCartQty(${item.id}, 1)" class="w-6 h-6 flex items-center justify-center text-slate-600 hover:bg-slate-100 rounded-r-lg font-bold">+</button>
+              </div>
+              <span class="mono font-bold text-xs text-slate-900 w-14 text-right">₹${itemTotal.toFixed(2)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const gst = subtotal * 0.05;
+      const total = subtotal + gst;
+
+      document.getElementById('billSubtotal').textContent = `₹${subtotal.toFixed(2)}`;
+      document.getElementById('billGst').textContent = `₹${gst.toFixed(2)}`;
+      document.getElementById('billTotal').textContent = `₹${total.toFixed(2)}`;
+      lucide.createIcons();
+    }
+
+    // Voice billing simulator & Web Speech API
+    let isRecording = false;
+    let recognition = null;
+
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'hi-IN';
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        applySampleVoice(transcript);
+        stopRecordingState();
+      };
+
+      recognition.onerror = function() {
+        stopRecordingState();
+      };
+
+      recognition.onend = function() {
+        stopRecordingState();
+      };
+    }
+
+    function toggleSpeechRecording() {
+      if (!isRecording) {
+        if (recognition) {
+          try {
+            recognition.start();
+          } catch(e) {}
+        }
+        isRecording = true;
+        document.getElementById('micBtn').classList.add('bg-red-500', 'text-white', 'animate-pulse');
+        document.getElementById('micBtn').classList.remove('bg-white', 'text-shop-700');
+        document.getElementById('micLabel').textContent = "Listening";
+        document.getElementById('transcriptionText').textContent = "Listening to voice input...";
+      } else {
+        if (recognition) {
+          try { recognition.stop(); } catch(e) {}
+        }
+        stopRecordingState();
+      }
+    }
+
+    function stopRecordingState() {
+      isRecording = false;
+      document.getElementById('micBtn').classList.remove('bg-red-500', 'text-white', 'animate-pulse');
+      document.getElementById('micBtn').classList.add('bg-white', 'text-shop-700');
+      document.getElementById('micLabel').textContent = "Speak";
+    }
+
+    function applySampleVoice(phrase) {
+      document.getElementById('transcriptionText').textContent = `"${phrase}"`;
+      document.getElementById('latencyBadge').textContent = "Parsed in 0.16s (NLP)";
+
+      const lower = phrase.toLowerCase();
+      // Match items intelligently
+      if (lower.includes("doodh") || lower.includes("milk")) addToCart(1, 2);
+      if (lower.includes("cheeni") || lower.includes("sugar")) addToCart(2, 1);
+      if (lower.includes("atta")) addToCart(3, 1);
+      if (lower.includes("oil") || lower.includes("tel")) addToCart(4, 1);
+      if (lower.includes("chai") || lower.includes("tea")) addToCart(5, 1);
+      if (lower.includes("soap") || lower.includes("excel")) addToCart(6, 3);
+      if (lower.includes("pyaz") || lower.includes("onion")) addToCart(7, 2);
+      if (lower.includes("aloo") || lower.includes("potato")) addToCart(8, 2);
+    }
+
+    // Checkout actions
+    function completeCheckout(mode) {
+      if (cart.length === 0) {
+        alert("Please add items to bill first!");
+        return;
+      }
+      const total = document.getElementById('billTotal').textContent;
+      alert(`✅ Invoice generated! Payment of ${total} received via ${mode.toUpperCase()}. Receipt printed.`);
+      clearCart();
+    }
+
+    function sendBillWhatsApp() {
+      if (cart.length === 0) {
+        alert("Please add items to bill first!");
+        return;
+      }
+      const phone = document.getElementById('customerPhone').value || "Customer";
+      const total = document.getElementById('billTotal').textContent;
+      alert(`📲 Digital receipt of ${total} sent to ${phone} on WhatsApp with UPI pay link!`);
+      clearCart();
+    }
+
+    function addToKhata() {
+      if (cart.length === 0) {
+        alert("Please add items to bill first!");
+        return;
+      }
+      const cust = document.getElementById('customerPhone').value || "Ramesh Sharma";
+      const total = document.getElementById('billTotal').textContent;
+      alert(`📖 Credit recorded! Added ${total} to ${cust}'s Khata balance.`);
+      clearCart();
+    }
+
+    // Render Inventory
+    function renderInventory() {
+      const tbody = document.getElementById('inventoryTableBody');
+      tbody.innerHTML = catalog.map(item => `
+        <tr class="hover:bg-slate-50 transition">
+          <td class="py-3 px-3">
+            <span class="font-bold text-slate-800 block">${item.name}</span>
+            <span class="text-[10px] text-slate-400 mono">SKU: SS-SKU-${item.id}09</span>
+          </td>
+          <td class="py-3 px-3 text-slate-600">${item.cat}</td>
+          <td class="py-3 px-3">
+            <span class="font-extrabold mono ${item.stock <= 5 ? 'text-red-600' : 'text-slate-800'}">${item.stock}</span> units
+          </td>
+          <td class="py-3 px-3 font-bold mono text-slate-900">₹${item.price.toFixed(2)}</td>
+          <td class="py-3 px-3">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${item.stock <= 5 ? 'bg-red-100 text-red-700' : 'bg-emerald-100 text-emerald-800'}">
+              ${item.stock <= 5 ? 'Low Stock' : 'Optimal'}
+            </span>
+          </td>
+          <td class="py-3 px-3 text-right">
+            <button onclick="orderFromFarmLink(${item.id})" class="px-2.5 py-1 rounded bg-shop-50 hover:bg-shop-100 text-shop-700 font-bold text-[11px] border border-shop-200">
+              Restock
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // Render Khata
+    function renderKhata() {
+      const container = document.getElementById('khataList');
+      container.innerHTML = khataLedger.map(c => `
+        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-sm">
+              ${c.name.split(' ').map(n=>n[0]).join('')}
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 text-sm leading-tight">${c.name}</p>
+              <p class="text-xs text-slate-400">${c.phone} • Last billed: ${c.lastDate}</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between sm:justify-end space-x-4">
+            <div class="text-left sm:text-right">
+              <p class="text-[10px] uppercase font-bold text-slate-400">Balance Udhar</p>
+              <p class="mono font-extrabold text-base text-amber-700">₹${c.balance.toFixed(2)}</p>
+            </div>
+            <button onclick="alert('📲 WhatsApp payment reminder with instant UPI link dispatched to ${c.phone}')" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1 shadow-sm">
+              <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+              <span>Send UPI Link</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render FarmLink wholesale offers
+    function renderFarmWholesale() {
+      const grid = document.getElementById('farmWholesaleGrid');
+      grid.innerHTML = farmLots.map(f => `
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 hover:border-emerald-300 transition">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded uppercase">${f.origin}</span>
+              <h4 class="font-extrabold text-slate-900 text-sm mt-1">${f.crop}</h4>
+              <p class="text-xs text-slate-500">Min Order: ${f.minOrder}</p>
+            </div>
+            <div class="text-right">
+              <p class="mono text-base font-extrabold text-emerald-700">₹${f.price.toFixed(2)}<span class="text-xs text-slate-400 font-normal">/${f.unit}</span></p>
+              <p class="text-[10px] line-through text-slate-400">Mandi: ₹${f.mandi.toFixed(2)}</p>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-slate-200 flex items-center justify-between">
+            <span class="text-[11px] text-slate-500 font-medium">Doorstep Delivery in 12h</span>
+            <button onclick="alert('🚜 Purchase Order for ${f.crop} dispatched to ${f.origin}! Escrow locked.')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">
+              Place Direct Order
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function orderFromFarmLink(skuId) {
+      switchTab('tab-farmlink-orders');
+    }
+
+    // Navigation switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-item').forEach(el => {
+        el.classList.remove('text-shop-600');
+        el.classList.add('text-slate-500');
+      });
+
+      if (tabId === 'tab-billing') {
+        document.getElementById('view-billing').classList.remove('hidden');
+        document.getElementById('nav-tab-billing').classList.add('text-shop-600');
+        document.getElementById('nav-tab-billing').classList.remove('text-slate-500');
+      } else if (tabId === 'tab-inventory') {
+        document.getElementById('view-inventory').classList.remove('hidden');
+        document.getElementById('nav-tab-inventory').classList.add('text-shop-600');
+        document.getElementById('nav-tab-inventory').classList.remove('text-slate-500');
+        renderInventory();
+      } else if (tabId === 'tab-khata') {
+        document.getElementById('view-khata').classList.remove('hidden');
+        document.getElementById('nav-tab-khata').classList.add('text-shop-600');
+        document.getElementById('nav-tab-khata').classList.remove('text-slate-500');
+        renderKhata();
+      } else if (tabId === 'tab-farmlink-orders') {
+        document.getElementById('view-farmlink').classList.remove('hidden');
+        document.getElementById('nav-tab-farmlink').classList.add('text-shop-600');
+        document.getElementById('nav-tab-farmlink').classList.remove('text-slate-500');
+        renderFarmWholesale();
+      }
+      lucide.createIcons();
+    }
+
+    function openNotificationModal() {
+      const modal = document.getElementById('shopModal');
+      const content = document.getElementById('shopModalContent');
+      content.innerHTML = `
+        <div class="space-y-3">
+          <h3 class="font-extrabold text-base text-slate-900 flex items-center gap-1.5">
+            <i data-lucide="bell" class="w-4 h-4 text-shop-600"></i> Store Notifications
+          </h3>
+          <div class="p-3 bg-indigo-50 border border-indigo-100 rounded-xl text-xs text-indigo-900">
+            <strong>FarmLink Dispatch:</strong> 50 kg Nashik Red Onions en route from FPO #108. Arrival expected by 6:30 AM.
+          </div>
+          <div class="p-3 bg-amber-50 border border-amber-100 rounded-xl text-xs text-amber-900">
+            <strong>Stock Alert:</strong> Refined Sugar low stock (4 units).
+          </div>
+          <button onclick="closeShopModal()" class="w-full py-2 bg-slate-900 text-white rounded-xl text-xs font-bold">Close</button>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeShopModal() {
+      document.getElementById('shopModal').classList.add('hidden');
+    }
+
+    // Initial render
+    renderCatalog();
+    renderCart();
+  </script>
+</body>
+</html>

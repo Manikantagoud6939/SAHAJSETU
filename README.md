@@ -1,6 +1,32 @@
 # SAHAJSETU — Unified Grassroots Ecosystem
 
-Welcome to the official web portal for **SAHAJSETU**, an integrated socio-economic digital platform powering grassroots commerce, direct agricultural trade, and community food rescue.
+Welcome to the official repository for **SAHAJSETU**, an integrated socio-economic digital platform powering grassroots commerce, direct agricultural trade, and community food rescue.
+
+---
+
+## 📱 Separate Standalone Applications
+
+This ecosystem is engineered with dedicated, role-specific web applications that can also be installed as standalone Android Apps (PWA / TWA):
+
+### 1. 🏬 **Local Shop AI App** (`shop.html` / `/shop`)
+*Dedicated Operating System for Micro-Retailers & Kiranas*
+- **Voice-Powered POS Terminal:** Ambient speech billing in vernacular dialects (Hindi, Tamil, Marathi, Bengali, Hinglish) with sub-second line itemization.
+- **Fast Product Catalog & Quick Picker:** Add items, calculate CGST/SGST, and print thermal receipts.
+- **Smart Inventory & Stock Velocity:** Predictive reordering warnings before critical staples deplete.
+- **Customer Khata (Digital Credit Ledger):** Track neighborhood Udhar with 1-click WhatsApp payment reminders with UPI links.
+- **FarmLink Procurement:** Order fresh produce directly from local farmer clusters at wholesale rates.
+
+### 2. 🌾 **FarmLink Farming App** (`farming.html` / `/farming`)
+*Dedicated Marketplace & Dispatch Portal for Farmers & FPOs*
+- **Harvest Listing Studio:** Post upcoming and harvested lots with quality grades, minimum order sizes, and dispatch dates.
+- **Live Mandi Price Radar:** Real-time benchmarking against Lasalgaon, Azadpur, and regional APMC mandis (+28% to +42% higher net realization).
+- **Logistics & Cold-Chain Tracking:** Monitor transit trucks with GPS and temperature assurance.
+- **Kisan Direct UPI & Escrow Wallet:** Instant bank withdrawals upon digital store gate delivery verification.
+
+### 3. 🌐 **SahajSetu Ecosystem Hub** (`index.html`)
+*Parent Brand & Multi-Product Launchpad*
+- Unifies **Local Shop AI**, **FarmLink Marketplace**, and **FoodShare Network** (zero-waste surplus food redistribution).
+- Interactive simulators, economic triad visualization, investor deck preview, and regional pilot application forms.
 
 ---
 
@@ -12,61 +38,24 @@ A platform designed to empower local economies by connecting micro-retailers, fa
 
 ---
 
-### **Product Pillars**
-
-1. **Local Shop AI (`#local-shop-ai`)**
-   - **Target Audience:** Micro-retailers, neighborhood kirana stores, small merchants.
-   - **Core Capabilities:**
-     - Vernacular Voice-Powered POS (Hindi, Tamil, Bengali, Marathi, Hinglish, etc.).
-     - 3-second instant itemization & GST billing to thermal print or WhatsApp.
-     - Predictive stock re-ordering alerting owners before supplies deplete.
-     - Automated customer WhatsApp digital ledger (Khata).
-
-2. **FarmLink Marketplace (`#farmlink`)**
-   - **Target Audience:** Farmer Producer Organizations (FPOs), smallholders, wholesale buyers, local shops.
-   - **Core Capabilities:**
-     - Direct farm-to-retail disintermediation eliminating 4–7 middlemen layers.
-     - 30–40% higher price realization for growers.
-     - Transparent live mandi vs. direct price benchmarking.
-     - Computer vision grading & automated cold-chain route aggregation.
-     - Escrow-backed immediate UPI payouts upon quality verification.
-
-3. **FoodShare Network (`#foodshare`)**
-   - **Target Audience:** Restaurants, banquet halls, supermarkets, community kitchens, food banks, shelters & NGOs.
-   - **Core Capabilities:**
-     - 1-Tap emergency surplus dispatch with real-time volunteer courier matching.
-     - Strict food safety and temperature control verification checklist.
-     - Automated ESG emission reduction & Section 80G tax benefit ledgers.
-     - Real-time impact telemetry (Kilograms rescued, meals served, CO₂ offset).
-
----
-
-## 💻 Tech Stack & Features
-
-- **Frontend:** Pure HTML5, Modern Tailwind CSS (CDN-loaded, responsive for mobile & desktop).
-- **Typography:** Space Grotesk (Brand Headings) + Plus Jakarta Sans (Body).
-- **Icons:** Lucide Icons.
-- **Interactive Simulator (`#simulator`):**
-  - **Voice AI Demo:** Instant parsing of conversational vernacular grocery orders into bill items with response latency metrics.
-  - **FarmLink Savings Calculator:** Live dynamic price-gap modeling based on commodity selection and procurement tonnage.
-  - **Surplus Food Dispatch Simulator:** Interactive trigger simulating volunteer courier routing and shelter matching.
-- **Onboarding & Pilot Registration:** Complete form with WhatsApp-first contact capture.
-
----
-
 ## 🚀 How to Run / View
 
-You can open `index.html` directly in any web browser:
+You can open any of the application portals directly in your browser:
 
-```bash
-# On Windows PowerShell:
-Start-Process "C:\Users\manik\.gemini\antigravity\scratch\sahajsetu-website\index.html"
+```powershell
+# Open Parent Hub
+Start-Process "index.html"
+
+# Open Local Shop AI App
+Start-Process "shop.html"
+
+# Open FarmLink Farming App
+Start-Process "farming.html"
 ```
 
-Or run a lightweight local web server:
+Or run via any local web server:
 
-```bash
-cd "C:\Users\manik\.gemini\antigravity\scratch\sahajsetu-website"
+```powershell
 npx serve .
 # or
 python -m http.server 3000

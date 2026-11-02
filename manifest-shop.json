@@ -1,0 +1,27 @@
+{
+  "name": "Local Shop AI — Smart Kirana POS",
+  "short_name": "Local Shop AI",
+  "description": "Voice-powered vernacular billing, predictive inventory restocking, and customer Khata digital credit ledger.",
+  "start_url": "/shop.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#312e81",
+  "theme_color": "#4f46e5",
+  "lang": "en-IN",
+  "categories": ["business", "productivity", "shopping"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

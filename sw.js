@@ -1,11 +1,17 @@
-const CACHE_NAME = 'sahajsetu-cache-v1';
+const CACHE_NAME = 'sahajsetu-cache-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
+  '/shop.html',
+  '/farming.html',
   '/manifest.json',
+  '/manifest-shop.json',
+  '/manifest-farming.json',
   '/privacy-policy.html',
   '/terms-of-service.html',
-  '/icons/icon.svg'
+  '/icons/icon.svg',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png'
 ];
 
 // Install Event
@@ -51,7 +57,7 @@ self.addEventListener('fetch', (event) => {
       }).catch(() => {
         // Fallback for navigation requests if offline
         if (event.request.mode === 'navigate') {
-          return caches.match('/index.html');
+          return caches.match(event.request) || caches.match('/index.html');
         }
       });
 

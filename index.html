@@ -163,10 +163,18 @@
       </nav>
 
       <!-- Action Button -->
-      <div class="hidden sm:flex items-center space-x-3">
-        <button onclick="openModal('pilot')" class="px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 shadow-md shadow-slate-900/10 hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center space-x-2">
-          <span>Partner With Us</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      <div class="hidden sm:flex items-center space-x-2">
+        <a href="/shop.html" class="px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition flex items-center space-x-1.5">
+          <i data-lucide="store" class="w-3.5 h-3.5"></i>
+          <span>Shop AI App</span>
+        </a>
+        <a href="/farming.html" class="px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm transition flex items-center space-x-1.5">
+          <i data-lucide="sprout" class="w-3.5 h-3.5"></i>
+          <span>Farming App</span>
+        </a>
+        <button onclick="openModal('pilot')" class="px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 shadow-sm transition flex items-center space-x-1">
+          <span>Join Pilot</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </button>
       </div>
 
@@ -179,10 +187,23 @@
     <!-- Mobile Nav Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-5 space-y-4 shadow-xl">
       <a href="#about" onclick="toggleMobileMenu()" class="block font-medium text-slate-700 hover:text-brand-600">Vision & Mission</a>
+      <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-2 my-2">
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Launch Standalone Applications</p>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="/shop.html" class="p-2.5 rounded-xl bg-indigo-600 text-white font-bold text-xs flex items-center justify-center space-x-1.5">
+            <i data-lucide="store" class="w-3.5 h-3.5"></i>
+            <span>Shop AI App</span>
+          </a>
+          <a href="/farming.html" class="p-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs flex items-center justify-center space-x-1.5">
+            <i data-lucide="sprout" class="w-3.5 h-3.5"></i>
+            <span>Farming App</span>
+          </a>
+        </div>
+      </div>
       <div class="pl-2 border-l-2 border-brand-500 space-y-3 my-2">
-        <a href="#local-shop-ai" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-slate-800">1. Local Shop AI</a>
-        <a href="#farmlink" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-slate-800">2. FarmLink Marketplace</a>
-        <a href="#foodshare" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-slate-800">3. FoodShare Network</a>
+        <a href="#local-shop-ai" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-slate-800">1. Local Shop AI Overview</a>
+        <a href="#farmlink" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-slate-800">2. FarmLink Marketplace Overview</a>
+        <a href="#foodshare" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-slate-800">3. FoodShare Network Overview</a>
       </div>
       <a href="#impact" onclick="toggleMobileMenu()" class="block font-medium text-slate-700 hover:text-brand-600">Unified Ecosystem Impact</a>
       <a href="#simulator" onclick="toggleMobileMenu()" class="block font-medium text-slate-700 hover:text-brand-600">Interactive Simulator</a>
@@ -442,9 +463,10 @@
           </div>
 
           <div class="pt-4 flex items-center space-x-4">
-            <button onclick="openModal('local-shop-ai')" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition">
-              Deploy Local Shop AI
-            </button>
+            <a href="/shop.html" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition inline-flex items-center space-x-2">
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+              <span>Launch Local Shop AI App</span>
+            </a>
             <a href="#simulator" class="text-sm font-bold text-indigo-600 hover:text-indigo-800 flex items-center">
               Watch voice demo <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
             </a>
@@ -658,9 +680,10 @@
           </div>
 
           <div class="pt-4 flex items-center space-x-4">
-            <button onclick="openModal('farmlink')" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition">
-              Onboard Your Farm or FPO
-            </button>
+            <a href="/farming.html" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition inline-flex items-center space-x-2">
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+              <span>Launch FarmLink Farming App</span>
+            </a>
             <button onclick="openModal('buyer')" class="px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm transition">
               Source Wholesale Produce
             </button>
